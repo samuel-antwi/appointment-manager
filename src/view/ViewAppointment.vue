@@ -64,7 +64,7 @@
     }
   }
 
-  // Fetch data from supabase whe component mounts
+  // Fetch data from supabase when component mounts
   onMounted(() => {
     getAppointmentData()
   })
@@ -104,7 +104,7 @@
   <div v-if="data">
     <div class="max-w-2xl px-4 mx-auto mt-12">
       <h1 class="py-3 text-2xl font-semibold text-center capitalize text-secondary">
-        {{ data.appointmentFor }} 👶
+        {{ data.appointmentFor }}
       </h1>
       <div
         v-if="statusMsg || errorMsg"
@@ -155,19 +155,16 @@
             alt="Baby"
           />
           <p class="p-2 mx-auto text-gray-100 capitalize rounded-md w-28 bg-secondary">
-            {{ data.appointmentFor }}
-          </p>
-          <p class="text-lg font-medium capitalize text-secondary">
-            {{ data.appointmentName }} <span>appointment</span>
+            {{ data.appointmentName }}
           </p>
           <div>
-            <span class="flex items-center">
+            <span class="sm:items-center sm:flex">
               <p class="text-gray-600 capitalize">
                 <fa icon="calendar-alt" />
                 {{ moment(data.date).format('dddd, Do MMMM YYYY') }}
               </p>
-              <span class="px-2 text-secondary">|</span>
-              <p class="text-gray-600 capitalize">
+              <span class="hidden px-2 sm:block text-secondary">|</span>
+              <p class="pt-1 text-left text-gray-600 capitalize sm:pt-0">
                 {{ data.time }}
               </p>
             </span>

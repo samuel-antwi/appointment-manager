@@ -20,6 +20,7 @@
       const statusMsg = ref(null)
       const appointmentFor = ref('')
       const appointmentTypeOptions = ref([
+        { name: 'Select', value: 'select' },
         { name: 'Hospital', value: 'hospital' },
         { name: 'GP Surgery', value: 'gp surgery' },
         { name: 'School', value: 'school' },
@@ -29,8 +30,6 @@
       const main = useMainStore()
       const userStore = useUser()
       const userId = userStore.getUserId
-
-      console.log(userId)
 
       const edit = main.edit
 
@@ -109,7 +108,7 @@
           <select
             required
             v-model="appointmentFor"
-            class="p-2.5 rounded-md focus:outline-none select w-full"
+            class="p-2.5 rounded-md focus:outline-none w-full"
             id="for"
           >
             <option selected="selected" value="select">Select name</option>
@@ -123,7 +122,7 @@
           <select
             required
             v-model="appointmentType"
-            class="p-2.5 rounded-md select"
+            class="p-2.5 focus:outline-none rounded-md"
             id="type"
           >
             <option
@@ -133,11 +132,6 @@
             >
               {{ appointment.name }}
             </option>
-            <!-- <option selected="selected" value="select type">Select type</option>
-            <option value="hospital">Hospital</option>
-            <option value="gp surgery">GP Surgery</option>
-            <option value="gp surgery">School</option>
-            <option value="other">Other</option> -->
           </select>
         </div>
         <div class="flex flex-col">

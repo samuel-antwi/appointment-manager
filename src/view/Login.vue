@@ -85,14 +85,15 @@
               :type="passwordType"
               id="password"
             />
-            <span
+            <button
+              type="button"
               v-if="password"
               @click="toggleShowPassword"
               class="absolute top-2.5 right-5 text-gray-600"
             >
               <fa icon="eye" v-if="showPassword" />
               <fa icon="eye-slash" v-else />
-            </span>
+            </button>
           </div>
         </div>
         <button
