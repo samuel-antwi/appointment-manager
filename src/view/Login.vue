@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, onMounted, ref, watch, watchEffect } from 'vue'
+  import { computed, ref, watchEffect } from 'vue'
   import { supabase } from '../supabase'
   import { useRouter } from 'vue-router'
   import { useUser } from '../store/useUser'

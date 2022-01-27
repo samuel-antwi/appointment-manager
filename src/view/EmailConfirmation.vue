@@ -1,19 +1,4 @@
-<script setup>
-  import { computed, ref, watchEffect } from 'vue'
-  import { useUser } from '../store/useUser'
-
-  //   let isLoading = ref(true)
-
-  //   const userStore = useUser()
-
-  //   const email = computed(() => userStore.getUserEmail)
-
-  //   watchEffect(() => {
-  //     if (email?.value) {
-  //       isLoading.value = false
-  //     }
-  //   })
-</script>
+<script setup></script>
 
 <template>
   <div class="max-w-2xl px-4 mx-auto my-12 text-center">

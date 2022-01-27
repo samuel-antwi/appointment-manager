@@ -17,7 +17,6 @@
           email: email.value,
           password: password.value,
         })
-        console.log(email.value, password.value)
         if (error) throw error
         router.push({ name: 'EmailConfirmation' })
       } catch (error) {

@@ -4,19 +4,19 @@
   import { ref } from 'vue'
   import { useUser } from './store/useUser'
 
-  // const user = supabase.auth.user()
-  // let appReady = ref(null)
+  const user = supabase.auth.user()
+  let appReady = ref(null)
 
   const store = useUser()
 
   // Check if user is logged in
-  // if (!user) {
-  //   appReady.value = true
-  // }
+  if (!user) {
+    appReady.value = true
+  }
 
   supabase.auth.onAuthStateChange((_, session) => {
     store.setUser(session)
-    // appReady.value = true
+    appReady.value = true
   })
 </script>
 

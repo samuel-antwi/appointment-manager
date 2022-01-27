@@ -1,39 +1,36 @@
-<script>
+<script setup>
   import { computed } from 'vue-demi'
   import { useUser } from '../store/useUser'
   import { supabase } from '../supabase'
   import { useRouter } from 'vue-router'
   import { onClickOutside } from '@vueuse/core'
   import { ref } from 'vue'
+  import { defineProps } from 'vue'
 
-  export default {
-    props: ['showSidenav', 'toggleSideNav'],
+  const props = defineProps(['showSidenav', 'toggleSideNav'])
 
-    setup(props) {
-      const userStore = useUser()
+  const userStore = useUser()
 
-      const user = computed(() => userStore.user)
+  const user = computed(() => userStore.user)
 
-      const email = computed(() => userStore.getUserEmail)
-      const router = useRouter()
+  const email = computed(() => userStore.getUserEmail)
+  const router = useRouter()
 
-      const target = ref(null)
+  const target = ref(null)
 
-      // Close sidenav when outside div is clicked
-      onClickOutside(target, (event) => {
-        props.toggleSideNav()
-        console.log(`You have clicked outside`)
-      })
+  // Close sidenav when outside div is clicked
+  onClickOutside(target, (event) => {
+    props.toggleSideNav()
+    console.log(`You have clicked outside`)
+  })
 
-      // Sign out user
-      const handleSignOut = async () => {
-        await supabase.auth.signOut()
-        router.push({ name: 'Login' })
-      }
-
-      return { handleSignOut, email, user, target }
-    },
+  // Sign out user
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.push({ name: 'Login' })
   }
+
+  // return { handleSignOut, email, user, target }
 </script>
 
 <template>
