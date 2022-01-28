@@ -1,5 +1,5 @@
 <script setup>
-  import { computed } from 'vue-demi'
+  import { computed } from 'vue'
   import { useUser } from '../store/useUser'
   import { supabase } from '../supabase'
   import { useRouter } from 'vue-router'

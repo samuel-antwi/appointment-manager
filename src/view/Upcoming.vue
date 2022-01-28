@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue-demi'
+  import { ref } from 'vue'
   import { supabase } from '../supabase'
   import moment from 'moment'
   import AppointmentList from '../components/AppointmentList.vue'
