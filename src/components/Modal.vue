@@ -6,7 +6,7 @@
 
 <template>
   <transition name="modal-animation">
-    <div v-if="modalActive" class="main-modal">
+    <div v-if="modalActive" class="pt-20 main-modal">
       <transition name="modal-animation-inner">
         <div class="relative modal-inner" v-show="modalActive">
           <button

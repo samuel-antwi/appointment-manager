@@ -33,7 +33,7 @@
   <div v-if="isLoading">
     <p></p>
   </div>
-  <div v-else class="max-w-5xl px-4 mx-auto my-12">
+  <div v-else class="max-w-5xl px-4 pt-40 mx-auto">
     <div v-if="!data" class="text-center">
       <p class="mb-5">You currently don't have any upcoming appointment</p>
       <router-link class="btn btn-info" :to="{ name: 'Create' }"

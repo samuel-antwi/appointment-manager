@@ -3,16 +3,22 @@
   import { computed, ref } from 'vue'
   import { useUser } from '../store/useUser'
   import { supabase } from '../supabase'
+  import { useRoute } from 'vue-router'
 
   export default {
     setup() {
       const main = useMainStore()
       const userStore = useUser()
 
+      const { name } = useRoute()
+
       const user = computed(() => userStore.user)
 
       // console.log(supabase.auth.user())
       const data = main.getAppointments()
+      const newRouter = main.getRoute(name)
+
+      console.log(newRouter)
 
       return { main, data }
     },
@@ -21,8 +27,7 @@
 
 <template>
   <div class="home">
-    <div class="overlay"></div>
-    <div class="max-w-6xl px-5 pt-12 mx-auto">
+    <div class="max-w-6xl px-5 pt-40 mx-auto">
       <div class="grid gap-6 grid-col-1 sm:grid-cols-2 lg:grid-cols-3">
         <div
           class="relative p-5 mb-8 shadow-2xl custom-card rounded-3xl bg-primary text-primary-content"
@@ -104,14 +109,6 @@
 
 <style lang="scss" scoped>
   .home {
-    background: url('../assets/images/kaygia-01.jpeg');
-    height: 100vh;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: repeat;
-    position: relative;
-
     .custom-card {
       height: 250px;
       position: relative;
@@ -120,13 +117,6 @@
     .btn {
       position: absolute !important;
       bottom: 10px;
-    }
-
-    .overlay {
-      width: 100%;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.7);
-      position: absolute;
     }
   }
 </style>

@@ -83,18 +83,16 @@
 </script>
 
 <template>
-  <div class="max-w-2xl px-4 mx-auto mt-12">
+  <div class="max-w-2xl px-4 pt-40 mx-auto">
     <div v-if="statusMsg || errorMsg" class="p-4 mb-10 rounded-md bg-[#F1F1F1]">
       <p class="text-red-500">{{ errorMsg }}</p>
       <p class="text-success">{{ statusMsg }}</p>
     </div>
-    <div class="bg-[#F1F1F1] p-5 rounded-md shadow-lg">
+    <div class="bg-[#F1F1F1] px-5 md:px-10 py-5 rounded-md shadow-lg">
       <h1 class="mb-4 text-2xl text-info">Add new appointment</h1>
       <form @submit.prevent="createAppointment" class="flex flex-col gap-y-4">
         <div class="flex flex-col">
-          <label class="mb-1 text-info label-text" for="appointment-name"
-            >Appointment name</label
-          >
+          <label class="mb-1 text-info" for="appointment-name">Appointment name</label>
           <input
             required
             v-model="appointmentName"
@@ -171,4 +169,8 @@
   </div>
 </template>
 
-<style></style>
+<style scoped>
+  label {
+    font-weight: 600;
+  }
+</style>

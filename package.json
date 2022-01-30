@@ -12,6 +12,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "@supabase/supabase-js": "^1.29.1",
+    "@tailwindcss/forms": "^0.4.0",
     "@vueuse/core": "^7.5.1",
     "body-parser": "^1.19.1",
     "daisyui": "^1.16.2",

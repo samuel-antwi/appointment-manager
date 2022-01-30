@@ -74,8 +74,8 @@
 </script>
 
 <template>
-  <div v-if="isLoading"></div>
-  <div v-else class="max-w-6xl px-4 mx-auto my-12">
+  <div class="pt-40" v-if="isLoading"></div>
+  <div v-else class="max-w-6xl px-4 pt-40 mx-auto">
     <div class="pt-20 text-center" v-if="data.length === 0">
       <h2 class="mb-4 text-xl">You currently do not have any appointment(s)</h2>
       <router-link class="btn btn-info" :to="{ name: 'Create' }"

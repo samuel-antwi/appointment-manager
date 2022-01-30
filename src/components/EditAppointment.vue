@@ -12,15 +12,7 @@
     <Modal :modalActive="modalActive" :toggleModal="toggleModal">
       <div class="modal-content">
         <div
-          class="
-            bg-[#F1F1F1]
-            w-[300px]
-            md:w-[600px] md:p-10
-            p-5
-            mb-10
-            rounded-md
-            shadow-lg
-          "
+          class="bg-[#F1F1F1] w-[350px] md:w-[600px] md:p-10 p-5 mb-10 rounded-md shadow-lg"
         >
           <h1 class="mb-4 text-2xl text-info">Update appointment</h1>
           <form @submit.prevent="updateAppointment" class="flex flex-col gap-y-4">
@@ -115,5 +107,8 @@
     top: 0;
     left: 0;
     width: 100%;
+  }
+  label {
+    font-weight: 600;
   }
 </style>

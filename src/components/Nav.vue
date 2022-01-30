@@ -2,7 +2,7 @@
   import { computed } from 'vue'
   import { useUser } from '../store/useUser'
   import { supabase } from '../supabase'
-  import { useRouter } from 'vue-router'
+  import { useRouter, useRoute } from 'vue-router'
   import Sidenav from './Sidenav.vue'
   import { ref } from 'vue'
 
@@ -21,15 +21,19 @@
   const toggleSideNav = () => {
     showSidenav.value = !showSidenav.value
   }
+
+  const isHomePage = () => {
+    return true
+  }
+
+  const { params } = useRoute()
 </script>
 
 <template>
-  <div class="relative">
-    <nav class="px-4 py-5 text-white bg-gray-900">
+  <div class="fixed z-10 w-full">
+    <nav class="px-4 py-5 bg-transparent">
       <div class="flex items-center justify-between max-w-5xl mx-auto">
-        <router-link class="btn btn-secondary md:btn-lg" to="/">
-          👶 KayGia 👶</router-link
-        >
+        <router-link class="btn btn-secondary md:btn-lg" to="/"> KayGia </router-link>
         <div class="items-center hidden sm:flex gap-x-4">
           <p v-if="user">Hi, {{ email }}</p>
           <router-link v-if="user" class="btn btn-primary" :to="{ name: 'Create' }"
@@ -44,7 +48,7 @@
         </div>
         <button @click="toggleSideNav" class="sm:hidden" type="button">
           <fa v-if="showSidenav" class="text-3xl" icon="times" />
-          <fa v-else class="text-3xl" icon="bars" />
+          <fa v-else class="text-3xl" :class="{ bars: isHomePage }" icon="bars" />
         </button>
       </div>
     </nav>
@@ -52,4 +56,8 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .bars {
+    color: black;
+  }
+</style>

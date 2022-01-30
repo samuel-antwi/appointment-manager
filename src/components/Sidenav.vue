@@ -38,16 +38,26 @@
     <nav
       ref="target"
       v-if="showSidenav"
-      class="absolute top-0 left-0 z-50 w-full h-screen p-6 sm:hidden bg-gray-50"
+      class="fixed top-0 left-0 z-50 w-full h-full p-6 overflow-y-hidden sm:hidden bg-gray-50"
     >
       <div>
         <button @click="toggleSideNav" class="absolute text-3xl right-4">&#215;</button>
-        <div @click="toggleSideNav" class="flex flex-col items-start gap-y-3">
-          <router-link class="btn btn-secondary md:btn-lg" to="/"> KayGia</router-link>
+        <div @click="toggleSideNav" class="flex flex-col items-start gap-y-5">
+          <router-link class="mb-10 btn btn-secondary md:btn-lg" to="/">
+            KayGia</router-link
+          >
           <p v-if="user">Hi, {{ email }}</p>
-          <router-link v-if="user" class="" :to="{ name: 'Create' }"> Create</router-link>
-          <button v-if="user" @click="handleSignOut" class="">Logout</button>
-          <router-link v-if="!user" class="" :to="{ name: 'Login' }"> Login</router-link>
+          <div class="flex flex-col font-semibold text-blue-600 gap-y-5">
+            <router-link v-if="user" class="" :to="{ name: 'Create' }">
+              Create</router-link
+            >
+            <button class="font-semibold" v-if="user" @click="handleSignOut">
+              Logout
+            </button>
+            <router-link class="font-semibold" v-if="!user" :to="{ name: 'Login' }">
+              Login</router-link
+            >
+          </div>
         </div>
       </div>
     </nav>
