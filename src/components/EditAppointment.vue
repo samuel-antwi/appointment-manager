@@ -12,9 +12,9 @@
     <Modal :modalActive="modalActive" :toggleModal="toggleModal">
       <div class="modal-content">
         <div
-          class="bg-[#F1F1F1] w-[350px] md:w-[600px] md:p-10 p-5 mb-10 rounded-md shadow-lg"
+          class="bg-[#F1F1F1] w-[360px] md:w-[600px] md:p-10 p-5 mb-10 rounded-md shadow-lg"
         >
-          <h1 class="mb-4 text-2xl text-info">Update appointment</h1>
+          <h1 class="py-5 mb-4 text-2xl text-info">Update appointment</h1>
           <form @submit.prevent="updateAppointment" class="flex flex-col gap-y-4">
             <div class="flex flex-col">
               <label class="mb-1 text-info label-text" for="appointment-name"
@@ -86,7 +86,7 @@
                 id="location"
               />
             </div>
-            <button class="self-start w-full sm:w-auto btn btn-info" type="submit">
+            <button class="self-start w-full px-10 sm:w-auto btn btn-info" type="submit">
               Update
             </button>
           </form>

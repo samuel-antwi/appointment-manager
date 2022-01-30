@@ -31,4 +31,8 @@
   html {
     overflow-x: hidden;
   }
+
+  .padding-wrapper {
+    padding-top: 2.5rem;
+  }
 </style>

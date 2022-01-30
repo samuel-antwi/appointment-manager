@@ -83,7 +83,7 @@
 </script>
 
 <template>
-  <div class="max-w-2xl px-4 pt-40 mx-auto">
+  <div class="max-w-2xl px-4 mx-auto padding-wrapper">
     <div v-if="statusMsg || errorMsg" class="p-4 mb-10 rounded-md bg-[#F1F1F1]">
       <p class="text-red-500">{{ errorMsg }}</p>
       <p class="text-success">{{ statusMsg }}</p>
@@ -163,7 +163,9 @@
             id="location"
           />
         </div>
-        <button class="self-start btn btn-info" type="submit">submit</button>
+        <button class="self-start w-full px-10 md:w-auto btn btn-info" type="submit">
+          submit
+        </button>
       </form>
     </div>
   </div>

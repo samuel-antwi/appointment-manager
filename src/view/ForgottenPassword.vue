@@ -29,7 +29,7 @@
 </script>
 
 <template>
-  <div class="max-w-2xl px-4 pt-40 mx-auto">
+  <div class="max-w-2xl px-4 mx-auto padding-wrapper">
     <!-- Error handling -->
     <div
       v-if="statusMsg || errorMsg"

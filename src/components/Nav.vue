@@ -30,7 +30,7 @@
 </script>
 
 <template>
-  <div class="fixed z-10 w-full">
+  <div class="">
     <nav class="px-4 py-5 bg-transparent">
       <div class="flex items-center justify-between max-w-5xl mx-auto">
         <router-link class="btn btn-secondary md:btn-lg" to="/"> KayGia </router-link>

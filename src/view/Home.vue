@@ -1,24 +1,18 @@
 <script>
   import { useMainStore } from '../store/main'
-  import { computed, ref } from 'vue'
+  import { computed } from 'vue'
   import { useUser } from '../store/useUser'
   import { supabase } from '../supabase'
-  import { useRoute } from 'vue-router'
 
   export default {
     setup() {
       const main = useMainStore()
       const userStore = useUser()
 
-      const { name } = useRoute()
-
       const user = computed(() => userStore.user)
 
       // console.log(supabase.auth.user())
       const data = main.getAppointments()
-      const newRouter = main.getRoute(name)
-
-      console.log(newRouter)
 
       return { main, data }
     },
@@ -26,8 +20,8 @@
 </script>
 
 <template>
-  <div class="home">
-    <div class="max-w-6xl px-5 pt-40 mx-auto">
+  <div class="home padding-wrapper">
+    <div class="max-w-6xl px-5 mx-auto">
       <div class="grid gap-6 grid-col-1 sm:grid-cols-2 lg:grid-cols-3">
         <div
           class="relative p-5 mb-8 shadow-2xl custom-card rounded-3xl bg-primary text-primary-content"

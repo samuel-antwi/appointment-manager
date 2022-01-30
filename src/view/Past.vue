@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="pt-40">
+  <div class="padding-wrapper">
     <div v-if="isLoading">
       <p></p>
     </div>

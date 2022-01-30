@@ -74,51 +74,53 @@
 </script>
 
 <template>
-  <div class="pt-40" v-if="isLoading"></div>
-  <div v-else class="max-w-6xl px-4 pt-40 mx-auto">
-    <div class="pt-20 text-center" v-if="data.length === 0">
-      <h2 class="mb-4 text-xl">You currently do not have any appointment(s)</h2>
-      <router-link class="btn btn-info" :to="{ name: 'Create' }"
-        >Create appointment</router-link
-      >
-    </div>
-    <div v-else class="flex flex-col max-w-xs mb-5">
-      <div v-if="data.length > 1">
-        <div class="flex items-center justify-between">
-          <label class="mb-1 label-text" for="">Filter by:</label>
-          <div>
-            <button
-              @click="resetFilter"
-              v-if="filteredData.length > 0"
-              type="button"
-              class="ml-3 text-info"
-            >
-              Reset
-            </button>
-            <button
-              disabled
-              @click="resetFilter"
-              v-else
-              type="button"
-              class="ml-3 text-blue-300 cursor-not-allowed"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-        <select
-          @change="filterAppointments(sort)"
-          v-model="sort"
-          class="w-full mt-1 text-gray-500 select focus:outline-none select-secondary"
+  <div class="padding-wrapper">
+    <div v-if="isLoading"></div>
+    <div v-else class="max-w-6xl px-4 mx-auto">
+      <div class="text-center" v-if="data.length === 0">
+        <h2 class="mb-4 text-xl">You currently do not have any appointment(s)</h2>
+        <router-link class="btn btn-info" :to="{ name: 'Create' }"
+          >Create appointment</router-link
         >
-          <option selected="selected" value="relevance">Relevance</option>
-          <option value="kaylee">Kaylee</option>
-          <option value="gianna">Gianna</option>
-          <option value="kaylee and gianna">Kaylee and Gianna</option>
-        </select>
       </div>
+      <div v-else class="flex flex-col mb-5 md:max-w-xs">
+        <div v-if="data.length > 1">
+          <div class="flex items-center justify-between">
+            <label class="mb-1 label-text" for="">Filter by:</label>
+            <div>
+              <button
+                @click="resetFilter"
+                v-if="filteredData.length > 0"
+                type="button"
+                class="ml-3 text-info"
+              >
+                Reset
+              </button>
+              <button
+                disabled
+                @click="resetFilter"
+                v-else
+                type="button"
+                class="text-blue-300 cursor-not-allowed"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+          <select
+            @change="filterAppointments(sort)"
+            v-model="sort"
+            class="w-full mt-1 text-gray-500 rounded-md focus:outline-none"
+          >
+            <option selected="selected" value="relevance">Relevance</option>
+            <option value="kaylee">Kaylee</option>
+            <option value="gianna">Gianna</option>
+            <option value="kaylee and gianna">Kaylee and Gianna</option>
+          </select>
+        </div>
+      </div>
+      <AppointmentList :data="data" :filteredData="filteredData" />
     </div>
-    <AppointmentList :data="data" :filteredData="filteredData" />
   </div>
 </template>
 

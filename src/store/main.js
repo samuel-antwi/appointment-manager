@@ -6,7 +6,6 @@ export const useMainStore = defineStore('mainStore', {
     data: [],
     errorMsg: null,
     statusMsg: null,
-    route: null,
   }),
 
   getters: {},
@@ -22,9 +21,6 @@ export const useMainStore = defineStore('mainStore', {
       } catch (error) {
         console.log(error.message)
       }
-    },
-    getRoute(name) {
-      return (this.route = name)
     },
   },
 })

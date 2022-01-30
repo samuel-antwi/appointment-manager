@@ -101,7 +101,7 @@
 </script>
 
 <template>
-  <div class="pt-40" v-if="data">
+  <div class="padding-wrapper" v-if="data">
     <div class="max-w-2xl px-4 mx-auto">
       <h1 class="py-3 text-2xl font-semibold text-center capitalize text-secondary">
         {{ data.appointmentFor }}
