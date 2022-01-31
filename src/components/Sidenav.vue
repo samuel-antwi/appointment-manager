@@ -43,7 +43,7 @@
       <div>
         <button @click="toggleSideNav" class="absolute text-3xl right-4">&#215;</button>
         <div @click="toggleSideNav" class="flex flex-col items-start gap-y-5">
-          <router-link class="mb-10 btn btn-secondary md:btn-lg" to="/">
+          <router-link class="mb-10 btn btn-primary md:btn-lg" to="/">
             KayGia</router-link
           >
           <p v-if="user">Hi, {{ email }}</p>

@@ -92,7 +92,7 @@
       <p class="text-success">{{ statusMsg }}</p>
     </div>
     <div class="bg-[#F1F1F1] px-5 md:px-10 py-5 rounded-md shadow-lg">
-      <h1 class="mb-4 text-2xl text-info">Add new appointment</h1>
+      <h1 class="py-4 mb-4 text-2xl font-semibold text-info">Add new appointment</h1>
       <form @submit.prevent="createAppointment" class="flex flex-col gap-y-4">
         <div class="flex flex-col">
           <label class="mb-1 text-info" for="appointment-name">Appointment name</label>
@@ -102,6 +102,7 @@
             class="p-2 rounded-md focus:outline-none form-control"
             type="text"
             id="appointment-name"
+            placeholder="Eg. Eye test, Physio or Vaccine"
           />
         </div>
         <div class="flex flex-col">
@@ -163,6 +164,7 @@
             class="p-2 rounded-md focus:outline-none"
             type="text"
             id="location"
+            placeholder="Location of the appointment"
           />
         </div>
         <button class="self-start w-full px-10 md:w-auto btn btn-info" type="submit">
