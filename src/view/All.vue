@@ -32,7 +32,7 @@
       // it is used to retrieve future appointments in supabase
       const getFormattedDate = () => {
         let dt = new Date()
-        const newDate = dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate()
+        const newDate = dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate()
         return newDate
       }
 
