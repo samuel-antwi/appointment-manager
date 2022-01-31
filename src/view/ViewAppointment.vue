@@ -113,15 +113,12 @@
       <h1 class="py-3 text-2xl font-semibold text-center capitalize text-secondary">
         {{ data.appointmentFor }}
       </h1>
-      <div
-        v-if="statusMsg || errorMsg"
-        class="max-w-2xl p-4 mx-auto mb-5 rounded-md bg-light-grey"
-      >
+      <div v-if="statusMsg || errorMsg" class="max-w-2xl p-4 mx-auto mb-5 rounded-md">
         <p class="text-red-500">{{ errorMsg }}</p>
         <p class="text-secondary">{{ statusMsg }}</p>
       </div>
       <div
-        class="relative flex flex-col items-center justify-center p-4 text-center rounded-md shadow-lg bg-light-grey"
+        class="relative flex flex-col items-center justify-center p-4 text-center rounded-md shadow-lg card-wrapper bg-light-grey"
       >
         <div class="absolute flex items-center gap-x-2 right-3 top-3">
           <button
@@ -201,4 +198,8 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .card-wrapper {
+    border-bottom: 8px solid hsl(0, 0%, 88%);
+  }
+</style>
