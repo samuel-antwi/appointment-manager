@@ -22,9 +22,14 @@
     edit.value = !edit.value
   }
 
-  //   toggleModal
-  const toggleModal = () => {
-    modalActive.value = !modalActive.value
+  // Open Modal
+  const openModal = () => {
+    modalActive.value = true
+  }
+
+  // Close modal
+  const closeModal = () => {
+    modalActive.value = false
   }
 
   //   console.log(editMode())
@@ -86,7 +91,7 @@
           completed: false,
         })
         .eq('id', currentId)
-      toggleModal()
+      closeModal()
       statusMsg.value = 'Appointment updated successfully!'
       setTimeout(() => {
         statusMsg.value = null
@@ -120,7 +125,7 @@
       >
         <div class="absolute flex items-center gap-x-2 right-3 top-3">
           <button
-            @click="toggleModal"
+            @click="openModal"
             class="flex flex-col items-center justify-center w-8 h-8 rounded-full bg-secondary"
           >
             <fa class="text-gray-100" icon="pen" />
@@ -190,7 +195,8 @@
       :updateAppointment="updateAppointment"
       :data="data"
       :editMode="editMode"
-      :toggleModal="toggleModal"
+      :closeModal="closeModal"
+      :openModal="openModal"
     />
   </div>
 </template>

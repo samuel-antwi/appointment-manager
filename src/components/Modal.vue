@@ -1,6 +1,6 @@
 <script>
   export default {
-    props: ['modalActive', 'toggleModal'],
+    props: ['modalActive'],
   }
 </script>
 
@@ -9,24 +9,6 @@
     <div v-if="modalActive" class="pt-20 main-modal">
       <transition name="modal-animation-inner">
         <div class="relative modal-inner" v-show="modalActive">
-          <!-- <button
-            @click="toggleModal"
-            class="absolute btn right-4 top-4 btn-outline btn-circle btn-xs"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              class="inline-block w-4 h-4 stroke-current"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-          </button> -->
           <!-- Modal content -->
           <slot />
         </div>

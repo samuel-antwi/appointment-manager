@@ -2,13 +2,20 @@
   import Modal from '../components/Modal.vue'
   export default {
     components: { Modal },
-    props: ['data', 'editMode', 'updateAppointment', 'modalActive', 'toggleModal'],
+    props: [
+      'data',
+      'editMode',
+      'updateAppointment',
+      'modalActive',
+      'openModal',
+      'closeModal',
+    ],
   }
 </script>
 
 <template>
-  <div @click.self="toggleModal" class="edit" v-if="modalActive">
-    <Modal :modalActive="modalActive" :toggleModal="toggleModal">
+  <div @click.self="closeModal" class="edit" v-if="modalActive">
+    <Modal :modalActive="modalActive" :openModal="openModal" :closeModal="closeModal">
       <div class="modal-content">
         <div
           class="bg-[#F1F1F1] w-[360px] h-[700px] overflow-y-scroll md:w-[600px] md:p-10 p-5 mb-10 rounded-md shadow-lg"
@@ -109,13 +116,14 @@
             <div class="flex justify-between pt-3">
               <button class="px-10 sm:w-auto btn btn-info" type="submit">Update</button>
               <button
-                @click="toggleModal"
+                @click="closeModal"
                 class="px-10 sm:w-auto btn btn-secondary"
-                type="submit"
+                type="button"
               >
                 Cancel
               </button>
             </div>
+            <span class="mb-4 text-gray-600">Click Update to save your changes.</span>
           </form>
         </div>
       </div>
