@@ -13,8 +13,10 @@
       const appointmentName = ref('')
       const appointmentType = ref('')
       const date = ref('')
+      const appointmentLocationDetails = ref('')
       const time = ref('')
       const location = ref('')
+      const postCode = ref('')
       const completed = ref(false)
       const errorMsg = ref(null)
       const statusMsg = ref(null)
@@ -48,6 +50,8 @@
                 time: time.value,
                 date: date.value,
                 location: location.value,
+                postCode: postCode.value,
+                appointmentLocationDetails: appointmentLocationDetails.value,
                 completed: false,
                 user_id: userId,
               },
@@ -80,6 +84,8 @@
         edit,
         appointmentTypeOptions,
         userId,
+        appointmentLocationDetails,
+        postCode,
       }
     },
   }
@@ -164,7 +170,28 @@
             class="p-2 rounded-md focus:outline-none"
             type="text"
             id="location"
-            placeholder="Location of the appointment"
+            placeholder="Eg. Kingsmill Hospital"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label class="mb-1 text-info" for="locationdetails">Location details</label>
+          <textarea
+            v-model="appointmentLocationDetails"
+            class="p-2 rounded-md focus:outline-none"
+            type="text"
+            id="locationdetails"
+            placeholder="Clinic 11, Women and Children's Center (Optional)"
+          ></textarea>
+        </div>
+        <div class="flex flex-col">
+          <label class="mb-1 text-info" for="postcode">Post Code</label>
+          <input
+            required
+            v-model="postCode"
+            class="p-2 rounded-md focus:outline-none"
+            type="text"
+            id="postcode"
+            placeholder="Optional"
           />
         </div>
         <button class="self-start w-full px-10 md:w-auto btn btn-info" type="submit">

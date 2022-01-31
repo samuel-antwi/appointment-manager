@@ -12,7 +12,7 @@
     <Modal :modalActive="modalActive" :toggleModal="toggleModal">
       <div class="modal-content">
         <div
-          class="bg-[#F1F1F1] w-[360px] md:w-[600px] md:p-10 p-5 mb-10 rounded-md shadow-lg"
+          class="bg-[#F1F1F1] w-[360px] h-[700px] overflow-y-scroll md:w-[600px] md:p-10 p-5 mb-10 rounded-md shadow-lg"
         >
           <h1 class="py-5 mb-4 text-2xl text-info">Update appointment</h1>
           <form @submit.prevent="updateAppointment" class="flex flex-col gap-y-4">
@@ -86,9 +86,37 @@
                 id="location"
               />
             </div>
-            <button class="self-start w-full px-10 sm:w-auto btn btn-info" type="submit">
-              Update
-            </button>
+            <div class="flex flex-col">
+              <label class="mb-1 text-info" for="locationdetails">Location details</label>
+              <textarea
+                v-model="data.appointmentLocationDetails"
+                class="p-2 rounded-md focus:outline-none"
+                type="text"
+                id="locationdetails"
+                placeholder="Clinic 11, Women and Children's Center (Optional)"
+              ></textarea>
+            </div>
+            <div class="flex flex-col">
+              <label class="mb-1 text-info" for="postcode">Post Code</label>
+              <input
+                required
+                v-model="data.postCode"
+                class="p-2 rounded-md focus:outline-none"
+                type="text"
+                id="postcode"
+                placeholder="Optional"
+              />
+            </div>
+            <div class="flex justify-between pt-3">
+              <button class="px-10 sm:w-auto btn btn-info" type="submit">Update</button>
+              <button
+                @click="toggleModal"
+                class="px-10 sm:w-auto btn btn-secondary"
+                type="submit"
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       </div>

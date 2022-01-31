@@ -9,7 +9,7 @@
     <div v-if="modalActive" class="pt-20 main-modal">
       <transition name="modal-animation-inner">
         <div class="relative modal-inner" v-show="modalActive">
-          <button
+          <!-- <button
             @click="toggleModal"
             class="absolute btn right-4 top-4 btn-outline btn-circle btn-xs"
           >
@@ -26,7 +26,7 @@
                 d="M6 18L18 6M6 6l12 12"
               ></path>
             </svg>
-          </button>
+          </button> -->
           <!-- Modal content -->
           <slot />
         </div>

@@ -157,20 +157,27 @@
           <p class="p-2 mx-auto text-gray-100 capitalize rounded-md w-28 bg-secondary">
             {{ data.appointmentName }}
           </p>
-          <div>
+          <div class="flex flex-col text-left text-gray-600 gap-y-4">
             <span class="sm:items-center sm:flex">
               <p class="text-gray-600 capitalize">
                 <fa icon="calendar-alt" />
                 {{ moment(data.date).format('dddd, Do MMMM YYYY') }}
               </p>
               <span class="hidden px-2 sm:block text-secondary">|</span>
-              <p class="pt-1 text-left text-gray-600 capitalize sm:pt-0">
+              <p class="pt-1 capitalize sm:pt-0">
                 {{ data.time }}
               </p>
             </span>
-            <p class="pt-2 text-left text-gray-600 capitalize">
+            <p class="capitalize">
               <fa icon="map-marker-alt" />
               {{ data.location }}
+            </p>
+            <p v-if="data.appointmentLocationDetails">
+              <span class="font-semibold">Location details:</span>
+              {{ data.appointmentLocationDetails }}
+            </p>
+            <p v-if="data.postCode">
+              <span class="font-semibold">Postcode:</span> {{ data.postCode }}
             </p>
           </div>
         </div>
