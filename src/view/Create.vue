@@ -80,7 +80,6 @@
         edit,
         appointmentTypeOptions,
         userId,
-        pastDate,
       }
     },
   }
