@@ -34,5 +34,6 @@
 
   .padding-wrapper {
     padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
   }
 </style>

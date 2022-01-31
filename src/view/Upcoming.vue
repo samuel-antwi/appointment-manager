@@ -8,16 +8,23 @@
   let isLoading = ref(true)
   let errorMsg = ref(null)
 
+  // Get date
+  // This function returns today's date and
+  // it is used to retrieve future appointments in supabase
+  const getFormattedDate = () => {
+    let dt = new Date()
+    const newDate = dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate()
+    return newDate
+  }
+
   const getData = async () => {
     try {
       const { error, data: appointments } = await supabase
         .from('appointments')
         .select('*')
+        .gte('date', getFormattedDate())
+        .order('date', { ascending: true })
       if (error) throw error
-      // Sort appointments based on the closest date to the current date
-      const newData = appointments.sort(function (a, b) {
-        return new Date(a.date) - new Date(b.date)
-      })
       data.value = appointments[0]
       isLoading.value = false
     } catch (error) {

@@ -27,12 +27,22 @@
       }
       localStorage()
 
+      // Get date
+      // This function returns today's date and
+      // it is used to retrieve future appointments in supabase
+      const getFormattedDate = () => {
+        let dt = new Date()
+        const newDate = dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate()
+        return newDate
+      }
+
       // Get appointments data from supabase
       const getData = async () => {
         try {
           const { data: appointments, error } = await supabase
             .from('appointments')
             .select('*')
+            .gte('date', getFormattedDate())
             .order('date', { ascending: true })
           if (error) throw error
           data.value = appointments

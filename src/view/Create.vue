@@ -33,32 +33,36 @@
 
       const edit = main.edit
 
-      // Get yesterday
-      const yesterday = new Date(Date.now())
-      yesterday.setDate(yesterday.getDate() - 1)
+      const formatTodayDate = () => {
+        return moment(new Date()).format('YYYY-MM-DD')
+      }
 
       const createAppointment = async () => {
-        try {
-          const { error } = await supabase.from('appointments').insert([
-            {
-              appointmentName: appointmentName.value,
-              appointmentFor: appointmentFor.value,
-              appointmentType: appointmentType.value,
-              time: time.value,
-              date: date.value,
-              location: location.value,
-              completed: false,
-              user_id: userId,
-            },
-          ])
-          if (error) throw error
-          router.push({ name: 'All' })
-        } catch (error) {
-          console.log(error.message)
-          errorMsg.value = error.message
-          setTimeout(() => {
-            errorMsg.value = null
-          }, 5000)
+        if (date.value >= formatTodayDate()) {
+          try {
+            const { error } = await supabase.from('appointments').insert([
+              {
+                appointmentName: appointmentName.value,
+                appointmentFor: appointmentFor.value,
+                appointmentType: appointmentType.value,
+                time: time.value,
+                date: date.value,
+                location: location.value,
+                completed: false,
+                user_id: userId,
+              },
+            ])
+            if (error) throw error
+            router.push({ name: 'All' })
+          } catch (error) {
+            console.log(error.message)
+            errorMsg.value = error.message
+            setTimeout(() => {
+              errorMsg.value = null
+            }, 5000)
+          }
+        } else {
+          errorMsg.value = 'Oops!, appointment date cannot be in the past!'
         }
       }
 
@@ -74,9 +78,9 @@
         statusMsg,
         location,
         edit,
-        yesterday,
         appointmentTypeOptions,
         userId,
+        pastDate,
       }
     },
   }
@@ -149,7 +153,6 @@
             v-model="time"
             class="p-2 rounded-md focus:outline-none"
             type="time"
-            v-bind:min="yesterday"
             id="time"
           />
         </div>
