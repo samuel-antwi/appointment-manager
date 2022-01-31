@@ -78,6 +78,8 @@
           appointmentName: data.value.appointmentName,
           appointmentFor: data.value.appointmentFor,
           appointmentType: data.value.appointmentType,
+          postCode: data.value.postCode,
+          appointmentLocationDetails: data.value.appointmentLocationDetails,
           time: data.value.time,
           date: data.value.date,
           location: data.value.location,

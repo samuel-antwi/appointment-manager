@@ -1,5 +1,4 @@
 <script>
-  import { ref } from 'vue'
   import Modal from '../components/Modal.vue'
   export default {
     components: { Modal },
