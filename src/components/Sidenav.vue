@@ -5,7 +5,6 @@
   import { useRouter } from 'vue-router'
   import { onClickOutside } from '@vueuse/core'
   import { ref } from 'vue'
-  import { defineProps } from 'vue'
 
   const props = defineProps(['showSidenav', 'toggleSideNav'])
 
