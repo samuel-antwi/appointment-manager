@@ -1,8 +1,8 @@
 <script setup>
-  import Nav from './components/Nav.vue'
-  import { supabase } from './supabase'
-  import { ref } from 'vue'
-  import { useUser } from './store/useUser'
+  import Nav from "./components/Nav.vue"
+  import { supabase } from "./supabase"
+  import { ref } from "vue"
+  import { useUser } from "./store/useUser"
 
   const user = supabase.auth.user()
   let appReady = ref(null)
@@ -28,7 +28,8 @@
 </template>
 
 <style>
-  html {
+  body {
+    background: #eeeeee;
     overflow-x: hidden;
   }
 

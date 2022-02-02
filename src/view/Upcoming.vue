@@ -1,8 +1,7 @@
 <script setup>
-  import { ref } from 'vue'
-  import { supabase } from '../supabase'
-  import moment from 'moment'
-  import AppointmentList from '../components/AppointmentList.vue'
+  import { ref } from "vue"
+  import { supabase } from "../supabase"
+  import moment from "moment"
 
   let data = ref(null)
   let isLoading = ref(true)
@@ -13,17 +12,17 @@
   // it is used to retrieve future appointments in supabase
   const getFormattedDate = () => {
     let dt = new Date()
-    const newDate = dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate()
+    const newDate = dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate()
     return newDate
   }
 
   const getData = async () => {
     try {
       const { error, data: appointments } = await supabase
-        .from('appointments')
-        .select('*')
-        .gte('date', getFormattedDate())
-        .order('date', { ascending: true })
+        .from("appointments")
+        .select("*")
+        .gte("date", getFormattedDate())
+        .order("date", { ascending: true })
       if (error) throw error
       data.value = appointments[0]
       isLoading.value = false
@@ -37,7 +36,7 @@
 </script>
 
 <template>
-  <div class="padding-wrapper">
+  <div class="min-h-screen padding-wrapper">
     <div v-if="isLoading">
       <p></p>
     </div>
@@ -54,7 +53,7 @@
         </h1>
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
           <router-link
-            class="bg-[#F1F1F1] rounded-xl flex flex-col items-center p-5 gap-y-5"
+            class="bg-[#ffffff] rounded-xl flex flex-col items-center p-5 gap-y-5"
             :to="{ name: 'ViewAppointment', params: { appointmentId: data.id } }"
           >
             <fa
@@ -82,7 +81,7 @@
             </h1>
             <p class="-mb-3">
               <fa class="mr-1 text-gray-500" icon="calendar-alt" />
-              {{ moment(data.date).format('dddd, Do MMMM YYYY') }}
+              {{ moment(data.date).format("dddd, Do MMMM YYYY") }}
             </p>
             <p><fa class="mr-1 text-gray-500" icon="clock" /> {{ data.time }}</p>
           </router-link>

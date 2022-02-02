@@ -1,7 +1,7 @@
 <script>
-  import moment from 'moment'
+  import moment from "moment"
   export default {
-    props: ['data', 'filteredData'],
+    props: ["data", "filteredData"],
 
     setup() {
       return { moment }
@@ -15,10 +15,10 @@
     class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3"
   >
     <router-link
-      class="bg-[#F1F1F1] rounded-xl flex flex-col items-center p-5 gap-y-5"
-      :to="{ name: 'ViewAppointment', params: { appointmentId: item.id } }"
       v-for="item in filteredData?.length > 0 ? filteredData : data"
       :key="item.id"
+      class="bg-[#ffffff] rounded-xl flex flex-col items-center p-5 gap-y-5"
+      :to="{ name: 'ViewAppointment', params: { appointmentId: item.id } }"
     >
       <fa
         v-if="item.appointmentType === 'hospital'"
@@ -43,7 +43,7 @@
       </h1>
       <p class="-mb-3">
         <fa class="mr-1 text-gray-500" icon="calendar-alt" />
-        {{ moment(item.date).format('dddd, Do MMMM YYYY') }}
+        {{ moment(item.date).format("dddd, Do MMMM YYYY") }}
       </p>
       <p><fa class="mr-1 text-gray-500" icon="clock" /> {{ item.time }}</p>
     </router-link>

@@ -1,10 +1,10 @@
 <script>
-  import { computed, ref } from 'vue'
-  import { supabase } from '../supabase'
-  import { useStorage } from '@vueuse/core'
-  import AppointmentList from '../components/AppointmentList.vue'
-  import { useMainStore } from '../store/main'
-  import { useUser } from '../store/useUser'
+  import { computed, ref } from "vue"
+  import { supabase } from "../supabase"
+  import { useStorage } from "@vueuse/core"
+  import AppointmentList from "../components/AppointmentList.vue"
+  import { useMainStore } from "../store/main"
+  import { useUser } from "../store/useUser"
 
   export default {
     components: { AppointmentList },
@@ -15,14 +15,14 @@
       let isLoading = ref(true)
       let errorMsg = ref(null)
       let statusMsg = ref(null)
-      let sort = ref('Relevance')
+      let sort = ref("Relevance")
 
       const currentUser = useUser()
 
       // Save filtered appointment in LocalStorage
       const localStorage = () => {
-        const store = useStorage('mystorage', filteredData)
-        const filterStore = useStorage('filter', sort)
+        const store = useStorage("mystorage", filteredData)
+        const filterStore = useStorage("filter", sort)
       }
       localStorage()
 
@@ -31,7 +31,7 @@
       // it is used to retrieve future appointments in supabase
       const getFormattedDate = () => {
         let dt = new Date()
-        const newDate = dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate()
+        const newDate = dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate()
         return newDate
       }
 
@@ -39,10 +39,10 @@
       const getData = async () => {
         try {
           const { data: appointments, error } = await supabase
-            .from('appointments')
-            .select('*')
-            .gte('date', getFormattedDate())
-            .order('date', { ascending: true })
+            .from("appointments")
+            .select("*")
+            .gte("date", getFormattedDate())
+            .order("date", { ascending: true })
           if (error) throw error
           data.value = appointments
           isLoading.value = false
@@ -83,7 +83,7 @@
 </script>
 
 <template>
-  <div class="padding-wrapper">
+  <div class="min-h-screen padding-wrapper">
     <div v-if="isLoading"></div>
     <div v-else class="max-w-6xl px-4 mx-auto">
       <div class="text-center" v-if="data.length === 0">

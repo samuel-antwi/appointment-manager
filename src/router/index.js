@@ -1,85 +1,95 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../view/Home.vue'
-import Create from '../view/Create.vue'
-import All from '../view/All.vue'
-import Past from '../view/Past.vue'
-import Upcoming from '../view/Upcoming.vue'
-import ViewAppointment from '../view/ViewAppointment.vue'
-import NotFound from '../view/NotFound.vue'
-import Login from '../view/Login.vue'
-import Signup from '../view/Signup.vue'
-import ForgottenPassword from '../view/ForgottenPassword.vue'
-import EmailConfirmation from '../view/EmailConfirmation.vue'
-import { supabase } from '../supabase'
+import { createRouter, createWebHistory } from "vue-router"
+import Home from "../view/Home.vue"
+import CreateAppointment from "../view/CreateAppointment.vue"
+import All from "../view/All.vue"
+import Past from "../view/Past.vue"
+import Upcoming from "../view/Upcoming.vue"
+import ViewAppointment from "../view/ViewAppointment.vue"
+import NotFound from "../view/NotFound.vue"
+import Login from "../view/Login.vue"
+import Signup from "../view/Signup.vue"
+import ForgottenPassword from "../view/ForgottenPassword.vue"
+import EmailConfirmation from "../view/EmailConfirmation.vue"
+import EditAppointment from "../view/EditAppointment.vue"
+import { supabase } from "../supabase"
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: Home,
   },
+
   {
-    path: '/create',
-    name: 'Create',
-    component: Create,
+    path: "/create",
+    name: "CreateAppointment",
+    component: CreateAppointment,
     meta: {
       auth: true,
     },
   },
   {
-    path: '/all',
-    name: 'All',
+    path: "/all",
+    name: "All",
     component: All,
     meta: {
       auth: true,
     },
   },
   {
-    path: '/past',
-    name: 'Past',
+    path: "/past",
+    name: "Past",
     component: Past,
     meta: {
       auth: true,
     },
   },
   {
-    path: '/upcoming',
-    name: 'Upcoming',
+    path: "/appointment/edit/:appointmentId",
+    name: "EditAppointment",
+    component: EditAppointment,
+    meta: {
+      auth: true,
+    },
+  },
+  {
+    path: "/upcoming",
+    name: "Upcoming",
     component: Upcoming,
     meta: {
       auth: true,
     },
   },
   {
-    path: '/confirm-email',
-    name: 'EmailConfirmation',
+    path: "/confirm-email",
+    name: "EmailConfirmation",
     component: EmailConfirmation,
   },
   {
-    path: '/appointment/:appointmentId',
-    name: 'ViewAppointment',
+    path: "/appointment/:appointmentId",
+    name: "ViewAppointment",
     component: ViewAppointment,
   },
   {
-    path: '/login',
-    name: 'Login',
+    path: "/login",
+    name: "Login",
     component: Login,
   },
   {
-    path: '/signup',
-    name: 'Signup',
+    path: "/signup",
+    name: "Signup",
     component: Signup,
   },
 
   {
-    path: '/reset-password',
-    name: 'ForgottenPassword',
+    path: "/reset-password",
+    name: "ForgottenPassword",
     component: ForgottenPassword,
   },
 
   {
-    path: '/:catchAll(.*)',
-    name: 'NotFound',
+    path: "/:catchAll(.*)",
+    name: "NotFound",
     component: NotFound,
   },
 ]
@@ -98,7 +108,7 @@ router.beforeEach((to, from, next) => {
       next()
       return
     }
-    next({ name: 'Login' })
+    next({ name: "Login" })
   }
   next()
 })

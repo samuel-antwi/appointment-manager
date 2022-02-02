@@ -1,7 +1,7 @@
 <script setup>
-  import { ref } from 'vue'
-  import { supabase } from '../supabase'
-  import moment from 'moment'
+  import { ref } from "vue"
+  import { supabase } from "../supabase"
+  import moment from "moment"
 
   let data = ref(null)
   let isLoading = ref(true)
@@ -12,17 +12,17 @@
   // it is used to retrieve future appointments in supabase
   const getFormattedDate = () => {
     let dt = new Date()
-    const newDate = dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate()
+    const newDate = dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate()
     return newDate
   }
 
   const getData = async () => {
     try {
       const { error, data: appointments } = await supabase
-        .from('appointments')
-        .select('*')
-        .lt('date', getFormattedDate())
-        .order('date', { ascending: true })
+        .from("appointments")
+        .select("*")
+        .lt("date", getFormattedDate())
+        .order("date", { ascending: true })
       if (error) throw error
       data.value = appointments
       isLoading.value = false
@@ -36,7 +36,7 @@
 </script>
 
 <template>
-  <div class="padding-wrapper">
+  <div class="min-h-screen padding-wrapper">
     <div v-if="isLoading">
       <p></p>
     </div>
@@ -52,7 +52,7 @@
           <router-link
             v-for="app in data"
             :key="app.id"
-            class="bg-[#F1F1F1] rounded-xl flex flex-col items-center p-5 gap-y-5"
+            class="bg-[#ffffff] border-red-600 border-4 rounded-xl flex flex-col items-center p-5 gap-y-5"
             :to="{ name: 'ViewAppointment', params: { appointmentId: app.id } }"
           >
             <fa
@@ -80,7 +80,7 @@
             </h1>
             <p class="-mb-3">
               <fa class="mr-1 text-gray-500" icon="calendar-alt" />
-              {{ moment(app.date).format('dddd, Do MMMM YYYY') }}
+              {{ moment(app.date).format("dddd, Do MMMM YYYY") }}
             </p>
             <p><fa class="mr-1 text-gray-500" icon="clock" /> {{ app.time }}</p>
           </router-link>

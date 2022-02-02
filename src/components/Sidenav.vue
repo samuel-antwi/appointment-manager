@@ -1,12 +1,12 @@
 <script setup>
-  import { computed } from 'vue'
-  import { useUser } from '../store/useUser'
-  import { supabase } from '../supabase'
-  import { useRouter } from 'vue-router'
-  import { onClickOutside } from '@vueuse/core'
-  import { ref } from 'vue'
+  import { computed } from "vue"
+  import { useUser } from "../store/useUser"
+  import { supabase } from "../supabase"
+  import { useRouter } from "vue-router"
+  import { onClickOutside } from "@vueuse/core"
+  import { ref } from "vue"
 
-  const props = defineProps(['showSidenav', 'toggleSideNav'])
+  const props = defineProps(["showSidenav", "toggleSideNav"])
 
   const userStore = useUser()
 
@@ -26,7 +26,7 @@
   // Sign out user
   const handleSignOut = async () => {
     await supabase.auth.signOut()
-    router.push({ name: 'Login' })
+    router.push({ name: "Login" })
   }
 
   // return { handleSignOut, email, user, target }
@@ -35,25 +35,25 @@
 <template>
   <transition name="mobile-animation">
     <nav
-      ref="target"
       v-if="showSidenav"
+      ref="target"
       class="fixed top-0 left-0 z-50 w-full h-full p-6 overflow-y-hidden sm:hidden bg-gray-50"
     >
       <div>
-        <button @click="toggleSideNav" class="absolute text-3xl right-4">&#215;</button>
-        <div @click="toggleSideNav" class="flex flex-col items-start gap-y-5">
+        <button class="absolute text-3xl right-4" @click="toggleSideNav">&#215;</button>
+        <div class="flex flex-col items-start gap-y-5" @click="toggleSideNav">
           <router-link class="mb-10 btn btn-primary md:btn-lg" to="/">
             KayGia</router-link
           >
           <p v-if="user">Hi, {{ email }}</p>
           <div class="flex flex-col font-semibold text-blue-600 gap-y-5">
-            <router-link v-if="user" class="" :to="{ name: 'Create' }">
+            <router-link v-if="user" class="" :to="{ name: 'CreateAppointment' }">
               Create</router-link
             >
-            <button class="font-semibold" v-if="user" @click="handleSignOut">
+            <button v-if="user" class="font-semibold" @click="handleSignOut">
               Logout
             </button>
-            <router-link class="font-semibold" v-if="!user" :to="{ name: 'Login' }">
+            <router-link v-if="!user" class="font-semibold" :to="{ name: 'Login' }">
               Login</router-link
             >
           </div>
