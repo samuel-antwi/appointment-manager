@@ -209,7 +209,7 @@
         </div>
 
         <button
-          class="max-w-xs py-4 font-semibold tracking-wider uppercase bg-gray-800 hover:bg-gray-900 text-gray-50"
+          class="w-full py-4 font-semibold tracking-wider uppercase bg-gray-800 md:w-6/12 hover:bg-gray-900 text-gray-50"
           type="submit"
         >
           Submit
