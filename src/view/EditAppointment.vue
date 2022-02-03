@@ -176,7 +176,6 @@
               v-model="data.appointmentLocationDetails"
               class="p-2 py-3.5 focus:outline-none"
               type="text"
-              placeholder="Clinic 11, Women and Children's Center (Optional)"
             ></textarea>
           </div>
           <div class="flex flex-col w-full md:w-1/2">
