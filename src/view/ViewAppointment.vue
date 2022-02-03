@@ -139,7 +139,7 @@
             </button>
           </div>
           <div class="absolute top-3 left-3">
-            <button class="text-secondary" @click="router.push({ name: 'All' })">
+            <button class="text-secondary" @click="router.go(-1)">
               <fa icon="chevron-left" /> Back
             </button>
           </div>
