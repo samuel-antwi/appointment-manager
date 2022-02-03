@@ -23,11 +23,12 @@
   <div class="height-wrapper home padding-wrapper">
     <div class="max-w-5xl px-5 mx-auto">
       <div class="grid gap-x-6 grid-col-1 sm:grid-cols-2 lg:grid-cols-3">
-        <div
+        <router-link
+          :to="{ name: 'All' }"
           class="relative p-8 mb-4 shadow-2xl custom-card rounded-3xl bg-primary text-primary-content"
         >
-          <h2 class="mb-3 text-xl uppercase">All Appointments</h2>
-          <p class="mb-4 text-gray-300">View all scheduled appointment(s)</p>
+          <h2 class="mb-6 text-xl font-medium uppercase">All Appointments</h2>
+          <p class="text-lg text-gray-300">View all scheduled appointment(s)</p>
           <router-link :to="{ name: 'All' }" class="justify-end card-actions">
             <button class="btn btn-primary">
               View All
@@ -46,12 +47,13 @@
               </svg>
             </button>
           </router-link>
-        </div>
-        <div
+        </router-link>
+        <router-link
+          :to="{ name: 'Upcoming' }"
           class="relative p-8 mb-4 shadow-2xl custom-card rounded-3xl bg-accent text-accent-content"
         >
-          <h2 class="mb-3 text-xl uppercase">Next Appointment(s)</h2>
-          <p class="mb-4">View the very next upcoming appointment(s).</p>
+          <h2 class="mb-6 text-xl font-medium uppercase">Next Appointment(s)</h2>
+          <p class="text-lg">View the very next upcoming appointment(s).</p>
           <router-link :to="{ name: 'Upcoming' }" class="justify-end card-actions">
             <button class="btn btn-accent bottom-2">
               Next appointment(s)
@@ -70,12 +72,13 @@
               </svg>
             </button>
           </router-link>
-        </div>
-        <div
+        </router-link>
+        <router-link
+          :to="{ name: 'Past' }"
           class="relative p-8 shadow-2xl custom-card rounded-3xl bg-secondary text-secondary-content"
         >
-          <h2 class="mb-5 text-xl uppercase">Past Appointment(s)</h2>
-          <p class="">View all past appoitment(s)</p>
+          <h2 class="mb-6 text-xl font-medium uppercase">Past Appointment(s)</h2>
+          <p class="text-lg">View all past appoitment(s)</p>
           <router-link :to="{ name: 'Past' }" class="justify-end card-actions">
             <button class="btn btn-secondary">
               View All
@@ -94,7 +97,7 @@
               </svg>
             </button>
           </router-link>
-        </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -102,12 +105,22 @@
 
 <style lang="scss" scoped>
   .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     .custom-card {
-      height: 250px;
+      height: 400px;
       position: relative;
       .btn {
         position: absolute !important;
         bottom: 10px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .custom-card {
+        height: 250px;
       }
     }
   }

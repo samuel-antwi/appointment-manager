@@ -37,27 +37,37 @@
     <nav
       v-if="showSidenav"
       ref="target"
-      class="fixed top-0 left-0 z-50 w-full h-full p-6 overflow-y-hidden sm:hidden bg-gray-50"
+      class="fixed top-0 left-0 z-50 w-full min-h-screen p-6 sm:hidden bg-gray-50"
     >
-      <div>
-        <button class="absolute text-3xl right-4" @click="toggleSideNav">&#215;</button>
-        <div class="flex flex-col items-start gap-y-5" @click="toggleSideNav">
-          <router-link class="mb-10 btn btn-primary md:btn-lg" to="/">
-            KayGia</router-link
-          >
-          <p v-if="user">Hi, {{ email }}</p>
-          <div class="flex flex-col font-semibold text-blue-600 gap-y-5">
-            <router-link v-if="user" class="" :to="{ name: 'CreateAppointment' }">
-              Create</router-link
-            >
-            <button v-if="user" class="font-semibold" @click="handleSignOut">
-              Logout
-            </button>
-            <router-link v-if="!user" class="font-semibold" :to="{ name: 'Login' }">
-              Login</router-link
-            >
-          </div>
+      <div class="flex justify-between">
+        <router-link class="mb-10 btn btn-primary md:btn-lg" to="/"> KayGia</router-link>
+        <div>
+          <button @click="toggleSideNav" class="text-3xl">&#215;</button>
         </div>
+      </div>
+      <div @click="toggleSideNav" class="flex flex-col items-center gap-y-6">
+        <p class="text-center" v-if="user">Hi, {{ email }}</p>
+        <router-link
+          v-if="user"
+          class="text-xl font-semibold tracking-wider"
+          :to="{ name: 'CreateAppointment' }"
+        >
+          Create</router-link
+        >
+        <button
+          v-if="user"
+          class="text-xl font-semibold tracking-wider"
+          @click="handleSignOut"
+        >
+          Logout
+        </button>
+        <router-link
+          v-if="!user"
+          class="text-xl font-semibold tracking-wider"
+          :to="{ name: 'Login' }"
+        >
+          Login</router-link
+        >
       </div>
     </nav>
   </transition>

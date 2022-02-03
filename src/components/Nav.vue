@@ -24,29 +24,33 @@
 </script>
 
 <template>
-  <nav class="px-4 bg-transparent">
-    <div class="flex items-center justify-between max-w-5xl py-5 mx-auto">
-      <router-link class="btn btn-secondary md:btn-lg" to="/"> KayGia </router-link>
-      <div class="items-center hidden sm:flex gap-x-4">
-        <p v-if="user">Hi, {{ email }}</p>
-        <router-link
-          v-if="user"
-          class="btn btn-primary"
-          :to="{ name: 'CreateAppointment' }"
-          >Create</router-link
-        >
-        <button v-if="user" class="btn btn-primary" @click="handleSignOut">Logout</button>
-        <router-link v-else class="btn btn-primary" :to="{ name: 'Login' }"
-          >Login</router-link
-        >
+  <div>
+    <nav class="px-4">
+      <div class="flex items-center justify-between max-w-5xl py-5 mx-auto">
+        <router-link class="btn btn-secondary md:btn-lg" to="/"> KayGia </router-link>
+        <div class="items-center hidden sm:flex gap-x-4">
+          <p v-if="user">Hi, {{ email }}</p>
+          <router-link
+            v-if="user"
+            class="btn btn-primary"
+            :to="{ name: 'CreateAppointment' }"
+            >Create</router-link
+          >
+          <button v-if="user" class="btn btn-primary" @click="handleSignOut">
+            Logout
+          </button>
+          <router-link v-else class="btn btn-primary" :to="{ name: 'Login' }"
+            >Login</router-link
+          >
+        </div>
+        <button class="sm:hidden" type="button" @click="toggleSideNav">
+          <fa v-if="showSidenav" class="text-3xl" icon="times" />
+          <fa v-else class="text-3xl" icon="bars" />
+        </button>
       </div>
-      <button class="sm:hidden" type="button" @click="toggleSideNav">
-        <fa v-if="showSidenav" class="text-3xl" icon="times" />
-        <fa v-else class="text-3xl" icon="bars" />
-      </button>
-    </div>
-  </nav>
-  <Sidenav :show-sidenav="showSidenav" :toggle-side-nav="toggleSideNav" />
+    </nav>
+    <Sidenav :show-sidenav="showSidenav" :toggle-side-nav="toggleSideNav" />
+  </div>
 </template>
 
 <style scoped>
