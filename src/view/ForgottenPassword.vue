@@ -29,7 +29,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen padding-wrapper">
+  <div class="height-wrapper padding-wrapper">
     <div class="max-w-2xl px-4 mx-auto">
       <!-- Error handling -->
       <div
@@ -50,13 +50,13 @@
             <input
               required
               v-model="email"
-              class="p-2.5 focus:outline-none rounded-md"
+              class="px-2.5 py-3.5 focus:outline-none"
               type="text"
               id="email"
             />
           </div>
           <button
-            class="px-5 py-2 text-gray-100 rounded-md sm:self-start bg-info"
+            class="px-10 tracking-wider font-medium uppercase py-3.5 text-gray-100 sm:self-start bg-info"
             type="submit"
           >
             Send

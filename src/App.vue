@@ -37,4 +37,20 @@
     padding-top: 2.5rem;
     padding-bottom: 3.5rem;
   }
+
+  .height-wrapper {
+    min-height: calc(100vh - 100px);
+  }
+
+  label {
+    font-weight: 600;
+    color: #777777 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  input,
+  select,
+  textarea {
+    border-color: #cccccc !important;
+  }
 </style>

@@ -20,7 +20,7 @@
 </script>
 
 <template>
-  <div class="h-screen home padding-wrapper">
+  <div class="height-wrapper home padding-wrapper">
     <div class="max-w-5xl px-5 mx-auto">
       <div class="grid gap-x-6 grid-col-1 sm:grid-cols-2 lg:grid-cols-3">
         <div

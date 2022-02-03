@@ -56,7 +56,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen padding-wrapper">
+  <div class="height-wrapper padding-wrapper">
     <div class="max-w-2xl px-4 mx-auto">
       <!-- Error handling -->
       <div v-if="errorMsg" class="relative p-4 mb-10 rounded-md shadow-lg bg-light-grey">
@@ -67,13 +67,13 @@
       </div>
       <div class="p-8 rounded-md shadow-md bg-[#ffffff]">
         <h1 class="mb-4 text-xl font-semibold text-info">Login</h1>
-        <form class="flex flex-col gap-y-3" @submit.prevent="handleLogin">
+        <form class="flex flex-col gap-y-6" @submit.prevent="handleLogin">
           <div class="flex flex-col">
             <label class="mb-1" for="email">Email*</label>
             <input
               id="email"
               v-model="email"
-              class="p-2.5 focus:outline-none rounded-md"
+              class="px-2.5 py-3.5 focus:outline-none"
               type="email"
             />
           </div>
@@ -83,7 +83,7 @@
               <input
                 id="password"
                 v-model="password"
-                class="p-2.5 w-full focus:outline-none rounded-md"
+                class="px-2.5 py-3.5 w-full focus:outline-none"
                 :type="passwordType"
               />
               <button
@@ -98,7 +98,7 @@
             </div>
           </div>
           <button
-            class="px-5 py-2 text-gray-100 rounded-md sm:self-start bg-info"
+            class="px-10 py-3.5 text-gray-100 font-medium uppercase tracking-wider sm:self-start bg-info"
             type="submit"
           >
             Login

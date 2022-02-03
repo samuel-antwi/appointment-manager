@@ -83,7 +83,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen padding-wrapper">
+  <div class="height-wrapper padding-wrapper">
     <div v-if="isLoading"></div>
     <div v-else class="max-w-6xl px-4 mx-auto">
       <div class="text-center" v-if="data.length === 0">

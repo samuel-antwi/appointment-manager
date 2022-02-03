@@ -86,7 +86,7 @@
 </script>
 
 <template>
-  <div class="py-12">
+  <div class="py-12 height-wrapper">
     <div class="max-w-2xl px-8 mx-auto text-center">
       <div
         v-if="errorMsg"

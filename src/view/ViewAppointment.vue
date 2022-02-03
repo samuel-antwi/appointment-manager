@@ -107,7 +107,7 @@
 </script>
 
 <template>
-  <div class="h-screen padding-wrapper">
+  <div class="height-wrapper padding-wrapper">
     <div v-if="data">
       <div class="max-w-2xl px-4 mx-auto">
         <h1 class="py-3 text-2xl font-semibold text-center capitalize text-secondary">

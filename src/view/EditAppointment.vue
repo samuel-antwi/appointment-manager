@@ -70,7 +70,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="height-wrapper">
     <div v-if="isLoading"></div>
 
     <div class="py-12" v-else>

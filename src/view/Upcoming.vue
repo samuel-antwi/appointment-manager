@@ -36,7 +36,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen padding-wrapper">
+  <div class="height-wrapper padding-wrapper">
     <div v-if="isLoading">
       <p></p>
     </div>
