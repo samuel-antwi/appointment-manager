@@ -1,5 +1,6 @@
 <script setup>
   import Nav from "./components/Nav.vue"
+  import Footer from "./components/Footer.vue"
   import { supabase } from "./supabase"
   import { ref } from "vue"
   import { useUser } from "./store/useUser"
@@ -24,6 +25,7 @@
   <div class="font-futura">
     <Nav />
     <router-view />
+    <Footer />
   </div>
 </template>
 

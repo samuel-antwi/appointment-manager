@@ -109,7 +109,7 @@
 <template>
   <div class="height-wrapper padding-wrapper">
     <div v-if="data">
-      <div class="max-w-2xl px-4 mx-auto">
+      <div class="max-w-2xl px-4 mx-auto mb-6">
         <h1 class="py-3 text-2xl font-semibold text-center capitalize text-secondary">
           {{ data.appointmentFor }}
         </h1>

@@ -1,5 +1,5 @@
 <script>
-  import { useMainStore } from "../store/main"
+  import { useMainStore } from "../store/useMain"
   import { computed } from "vue"
   import { useUser } from "../store/useUser"
   import { supabase } from "../supabase"
@@ -21,7 +21,7 @@
 
 <template>
   <div class="height-wrapper home padding-wrapper">
-    <div class="max-w-5xl px-5 mx-auto">
+    <div class="max-w-5xl px-5 mx-auto mb-10">
       <div class="grid gap-x-6 grid-col-1 sm:grid-cols-2 lg:grid-cols-3">
         <router-link
           :to="{ name: 'All' }"

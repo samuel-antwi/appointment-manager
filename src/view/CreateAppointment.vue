@@ -2,7 +2,7 @@
   import { ref } from "vue"
   import { supabase } from "../supabase"
   import { useRouter } from "vue-router"
-  import { useMainStore } from "../store/main"
+  import { useMainStore } from "../store/useMain"
   import moment from "moment"
   import { useUser } from "../store/useUser"
   export default {

@@ -3,7 +3,7 @@
   import { supabase } from "../supabase"
   import { useStorage } from "@vueuse/core"
   import AppointmentList from "../components/AppointmentList.vue"
-  import { useMainStore } from "../store/main"
+  import { useMainStore } from "../store/useMain"
   import { useUser } from "../store/useUser"
 
   export default {
@@ -85,7 +85,7 @@
 <template>
   <div class="height-wrapper padding-wrapper">
     <div v-if="isLoading"></div>
-    <div v-else class="max-w-6xl px-4 mx-auto">
+    <div v-else class="max-w-6xl px-4 mx-auto mb-6">
       <div class="text-center" v-if="data.length === 0">
         <h2 class="mb-4 text-xl">You currently do not have any appointment(s)</h2>
         <router-link class="btn btn-info" :to="{ name: 'Create' }"
