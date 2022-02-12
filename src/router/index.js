@@ -8,6 +8,7 @@ import ViewAppointment from "../view/ViewAppointment.vue"
 import NotFound from "../view/NotFound.vue"
 import Login from "../view/Login.vue"
 import Signup from "../view/Signup.vue"
+import ResetPassword from "../view/ResetPassword.vue"
 import ForgottenPassword from "../view/ForgottenPassword.vue"
 import EmailConfirmation from "../view/EmailConfirmation.vue"
 import EditAppointment from "../view/EditAppointment.vue"
@@ -82,9 +83,14 @@ const routes = [
   },
 
   {
-    path: "/reset-password",
+    path: "/password-recovery",
     name: "ForgottenPassword",
     component: ForgottenPassword,
+  },
+  {
+    path: "/reset-password",
+    name: "ResetPassword",
+    component: ResetPassword,
   },
 
   {

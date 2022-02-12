@@ -1,8 +1,9 @@
-import { defineStore, acceptHMRUpdate } from 'pinia'
+import { defineStore, acceptHMRUpdate } from "pinia"
 
-export const useUser = defineStore('userStore', {
+export const useUser = defineStore("userStore", {
   state: () => ({
     user: null,
+    resetAccessToken: null,
   }),
 
   getters: {
@@ -22,6 +23,12 @@ export const useUser = defineStore('userStore', {
       } catch (error) {
         console.log(error)
       }
+    },
+    setResetAccessToken(payload) {
+      state.resetAccessToken = payload ? payload : null
+    },
+    getResetAcessToken() {
+      return state.resetAccessToken
     },
   },
 })

@@ -3,7 +3,8 @@
   import { supabase } from "../supabase"
   import { useRouter } from "vue-router"
 
-  let email = ref("")
+  let password = ref("")
+  let confirmPassword = ref("")
   let statusMsg = ref("")
   let errorMsg = ref("")
 
@@ -46,16 +47,26 @@
         </button>
       </div>
       <div class="rounded-md bg-[#ffffff] p-8 shadow-md">
-        <h1 class="text-info mb-4 text-xl font-semibold">Password Recovery</h1>
+        <h1 class="text-info mb-4 text-xl font-semibold">Reset Password</h1>
         <form @submit.prevent="handleForgottenPassword" class="flex flex-col gap-y-3">
           <div class="flex flex-col">
-            <label class="mb-1" for="email">Email*</label>
+            <label class="mb-1" for="password">Password</label>
             <input
               required
-              v-model="email"
+              v-model="password"
               class="px-2.5 py-3.5 focus:outline-none"
               type="text"
-              id="email"
+              id="password"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-1" for="confirmpassword">Confirm Password</label>
+            <input
+              required
+              v-model="confirmPassword"
+              class="px-2.5 py-3.5 focus:outline-none"
+              type="text"
+              id="confirmpassword"
             />
           </div>
           <button

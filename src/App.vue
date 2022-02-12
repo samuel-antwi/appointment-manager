@@ -2,11 +2,15 @@
   import Nav from "./components/Nav.vue"
   import Footer from "./components/Footer.vue"
   import { supabase } from "./supabase"
-  import { ref } from "vue"
+  import { ref, onMounted } from "vue"
   import { useUser } from "./store/useUser"
+  import { useRouter, useRoute } from "vue-router"
 
   const user = supabase.auth.user()
   let appReady = ref(null)
+
+  let router = useRouter()
+  const route = useRoute()
 
   const store = useUser()
 
@@ -15,9 +19,13 @@
     appReady.value = true
   }
 
-  supabase.auth.onAuthStateChange((_, session) => {
-    store.setUser(session)
-    appReady.value = true
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "PASSWORD_RECOVERY") {
+      router.push({ name: "ResetPassword" })
+    } else {
+      store.setUser(session)
+      appReady.value = true
+    }
   })
 </script>
 

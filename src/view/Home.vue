@@ -1,42 +1,47 @@
 <script>
-  import { useMainStore } from "../store/useMain"
-  import { computed } from "vue"
+  import { useAppointments } from "../store/Appointments"
+  import { computed, onMounted } from "vue"
   import { useUser } from "../store/useUser"
   import { supabase } from "../supabase"
+  import { useRoute } from "vue-router"
 
   export default {
     setup() {
-      const main = useMainStore()
+      const appointments = useAppointments()
       const userStore = useUser()
 
       const user = computed(() => userStore.user)
 
-      // console.log(supabase.auth.user())
-      const data = main.getAppointments()
+      const route = useRoute()
 
-      return { main, data }
+      // console.log(route.fullPath)
+
+      // console.log(supabase.auth.user())
+      const data = appointments.getAppointments()
+
+      return { appointments, data, route }
     },
   }
 </script>
 
 <template>
   <div class="height-wrapper home padding-wrapper">
-    <div class="max-w-5xl px-5 mx-auto mb-10">
-      <div class="grid gap-x-6 grid-col-1 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mx-auto mb-10 max-w-5xl px-5">
+      <div class="grid-col-1 grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
         <router-link
           :to="{ name: 'All' }"
-          class="relative p-8 mb-4 shadow-2xl custom-card rounded-3xl bg-primary text-primary-content"
+          class="custom-card bg-primary text-primary-content relative mb-4 rounded-3xl p-8 shadow-2xl"
         >
           <h2 class="mb-6 text-xl font-medium uppercase">All Appointments</h2>
           <p class="text-lg text-gray-300">View all scheduled appointment(s)</p>
-          <router-link :to="{ name: 'All' }" class="justify-end card-actions">
+          <router-link :to="{ name: 'All' }" class="card-actions justify-end">
             <button class="btn btn-primary">
               View All
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                class="inline-block w-6 h-6 ml-2 stroke-current"
+                class="ml-2 inline-block h-6 w-6 stroke-current"
               >
                 <path
                   stroke-linecap="round"
@@ -50,18 +55,18 @@
         </router-link>
         <router-link
           :to="{ name: 'Upcoming' }"
-          class="relative p-8 mb-4 shadow-2xl custom-card rounded-3xl bg-accent text-accent-content"
+          class="custom-card bg-accent text-accent-content relative mb-4 rounded-3xl p-8 shadow-2xl"
         >
           <h2 class="mb-6 text-xl font-medium uppercase">Next Appointment(s)</h2>
           <p class="text-lg">View the very next upcoming appointment(s).</p>
-          <router-link :to="{ name: 'Upcoming' }" class="justify-end card-actions">
+          <router-link :to="{ name: 'Upcoming' }" class="card-actions justify-end">
             <button class="btn btn-accent bottom-2">
               Next appointment(s)
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                class="inline-block w-6 h-6 ml-2 stroke-current"
+                class="ml-2 inline-block h-6 w-6 stroke-current"
               >
                 <path
                   stroke-linecap="round"
@@ -75,18 +80,18 @@
         </router-link>
         <router-link
           :to="{ name: 'Past' }"
-          class="relative p-8 shadow-2xl custom-card rounded-3xl bg-secondary text-secondary-content"
+          class="custom-card bg-secondary text-secondary-content relative rounded-3xl p-8 shadow-2xl"
         >
           <h2 class="mb-6 text-xl font-medium uppercase">Past Appointment(s)</h2>
           <p class="text-lg">View all past appoitment(s)</p>
-          <router-link :to="{ name: 'Past' }" class="justify-end card-actions">
+          <router-link :to="{ name: 'Past' }" class="card-actions justify-end">
             <button class="btn btn-secondary">
               View All
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                class="inline-block w-6 h-6 ml-2 stroke-current"
+                class="ml-2 inline-block h-6 w-6 stroke-current"
               >
                 <path
                   stroke-linecap="round"

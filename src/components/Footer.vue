@@ -5,8 +5,8 @@
 </script>
 
 <template>
-  <div class="fixed bottom-0 w-full py-4 bg-gray-700 text-gray-50">
-    <div class="max-w-4xl px-5 mx-auto">
+  <div class="bg-gray-700 py-4 text-gray-50">
+    <div class="mx-auto max-w-4xl px-5">
       <h1 class="tracking-wider">All rights reserved &copy; kaygia {{ getYear() }}</h1>
     </div>
   </div>

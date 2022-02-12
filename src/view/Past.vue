@@ -1,38 +1,11 @@
 <script setup>
-  import { ref } from "vue"
-  import { supabase } from "../supabase"
   import moment from "moment"
+  import { useAppointments } from "../store/Appointments"
+  import { storeToRefs } from "pinia"
 
-  let data = ref(null)
-  let isLoading = ref(true)
-  let errorMsg = ref(null)
-
-  // Get date
-  // This function returns today's date and
-  // it is used to retrieve future appointments in supabase
-  const getFormattedDate = () => {
-    let dt = new Date()
-    const newDate = dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate()
-    return newDate
-  }
-
-  const getData = async () => {
-    try {
-      const { error, data: appointments } = await supabase
-        .from("appointments")
-        .select("*")
-        .lt("date", getFormattedDate())
-        .order("date", { ascending: true })
-      if (error) throw error
-      data.value = appointments
-      isLoading.value = false
-    } catch (error) {
-      console.log(error.message)
-      errorMsg.value = error.message
-    }
-  }
-
-  getData()
+  const appointments = useAppointments()
+  appointments.getPastAppointments()
+  const { isLoading, pastAppointments: data } = storeToRefs(useAppointments())
 </script>
 
 <template>
@@ -40,19 +13,19 @@
     <div v-if="isLoading">
       <p></p>
     </div>
-    <div v-else class="max-w-5xl px-4 mx-auto">
+    <div v-else class="mx-auto max-w-5xl px-4">
       <div v-if="data.length === 0" class="text-center">
         <p class="mb-5 text-lg">You currently don't have any past appointment(s)</p>
       </div>
       <div v-else>
-        <h1 class="py-5 text-2xl font-semibold text-center text-gray-600 sm:text-left">
+        <h1 class="py-5 text-center text-2xl font-semibold text-gray-600 sm:text-left">
           Past Appointment(s)
         </h1>
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
           <router-link
             v-for="app in data"
             :key="app.id"
-            class="bg-[#ffffff] border-red-600 border-4 rounded-xl flex flex-col items-center p-5 gap-y-5"
+            class="flex flex-col items-center gap-y-5 rounded-xl border-4 border-red-600 bg-[#ffffff] p-5"
             :to="{ name: 'ViewAppointment', params: { appointmentId: app.id } }"
           >
             <fa
@@ -66,7 +39,7 @@
               icon="clinic-medical"
             />
             <fa v-else class="text-4xl text-gray-500" icon="home" />
-            <p class="text-xl font-bold capitalize text-secondary">
+            <p class="text-secondary text-xl font-bold capitalize">
               {{ app.appointmentFor }}
             </p>
             <p>
@@ -75,7 +48,7 @@
                 app.appointmentType
               }}</span>
             </p>
-            <h1 class="p-2 capitalize rounded-lg bg-secondary text-gray-50">
+            <h1 class="bg-secondary rounded-lg p-2 capitalize text-gray-50">
               {{ app.appointmentName }}
             </h1>
             <p class="-mb-3">
