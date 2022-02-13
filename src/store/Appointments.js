@@ -7,6 +7,7 @@ export const useAppointments = defineStore({
     data: [],
     appointment: null,
     pastAppointments: [],
+    nextAppointment: null,
     isLoading: false,
     errorMsg: null,
     statusMsg: null,
@@ -114,6 +115,24 @@ export const useAppointments = defineStore({
           .order("date", { ascending: true })
         if (error) throw error
         this.pastAppointments = appointments
+        this.isLoading = false
+      } catch (error) {
+        console.log(error.message)
+        this.errorMsg = error.message
+      }
+    },
+
+    // Get the next appointment
+    async getNextappointment() {
+      this.isLoading = true
+      try {
+        const { error, data: appointments } = await supabase
+          .from("appointments")
+          .select("*")
+          .gte("date", this.getFormattedDate)
+          .order("date", { ascending: true })
+        if (error) throw error
+        this.nextAppointment = appointments[0]
         this.isLoading = false
       } catch (error) {
         console.log(error.message)

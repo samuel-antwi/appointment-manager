@@ -94,8 +94,7 @@ const routes = [
   },
 
   {
-    // path: "/:catchAll(.*)",
-    path: "/*",
+    path: "/:catchAll(.*)",
     name: "NotFound",
     component: NotFound,
   },

@@ -1,59 +1,32 @@
 <script setup>
-  import { ref } from "vue"
-  import { supabase } from "../supabase"
   import moment from "moment"
+  import { useAppointments } from "../store/Appointments"
+  import { storeToRefs } from "pinia"
 
-  let data = ref(null)
-  let isLoading = ref(true)
-  let errorMsg = ref(null)
-
-  // Get date
-  // This function returns today's date and
-  // it is used to retrieve future appointments in supabase
-  const getFormattedDate = () => {
-    let dt = new Date()
-    const newDate = dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate()
-    return newDate
-  }
-
-  const getData = async () => {
-    try {
-      const { error, data: appointments } = await supabase
-        .from("appointments")
-        .select("*")
-        .gte("date", getFormattedDate())
-        .order("date", { ascending: true })
-      if (error) throw error
-      data.value = appointments[0]
-      isLoading.value = false
-    } catch (error) {
-      console.log(error.message)
-      errorMsg.value = error.message
-    }
-  }
-
-  getData()
+  const appointmentStore = useAppointments()
+  appointmentStore.getNextappointment()
+  const { isLoading, nextAppointment: data } = storeToRefs(appointmentStore)
 </script>
 
 <template>
   <div class="height-wrapper padding-wrapper">
     <div v-if="isLoading">
-      <p></p>
+      <p class="text-center">Loading...</p>
     </div>
-    <div v-else class="max-w-5xl px-4 mx-auto">
+    <div v-else class="mx-auto max-w-5xl px-4">
       <div v-if="!data" class="text-center">
         <p class="mb-5">You currently don't have any upcoming appointment</p>
-        <router-link class="btn btn-info" :to="{ name: 'Create' }"
+        <router-link class="btn btn-info" :to="{ name: 'CreateAppointment' }"
           >Create appointment</router-link
         >
       </div>
       <div v-else>
-        <h1 class="py-5 text-2xl font-semibold text-center text-gray-600 sm:text-left">
+        <h1 class="py-5 text-center text-2xl font-semibold text-gray-600 sm:text-left">
           Next Appointment(s)
         </h1>
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
           <router-link
-            class="bg-[#ffffff] rounded-xl flex flex-col items-center p-5 gap-y-5"
+            class="flex flex-col items-center gap-y-5 rounded-xl bg-[#ffffff] p-5"
             :to="{ name: 'ViewAppointment', params: { appointmentId: data.id } }"
           >
             <fa
@@ -67,7 +40,7 @@
               icon="clinic-medical"
             />
             <fa v-else class="text-4xl text-gray-500" icon="home" />
-            <p class="text-xl font-bold capitalize text-secondary">
+            <p class="text-secondary text-xl font-bold capitalize">
               {{ data.appointmentFor }}
             </p>
             <p>
@@ -76,7 +49,7 @@
                 data.appointmentType
               }}</span>
             </p>
-            <h1 class="p-2 rounded-lg bg-secondary text-gray-50">
+            <h1 class="bg-secondary rounded-lg p-2 text-gray-50">
               {{ data.appointmentName }}
             </h1>
             <p class="-mb-3">

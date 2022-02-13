@@ -23,7 +23,7 @@
   const localStorage = () => {
     const store = useStorage("mystorage", filteredData)
     const filterStore = useStorage("filter", sort)
-    const localStorageData = useStorage("appointments", data)
+    // const localStorageData = useStorage("appointments", data)
   }
   localStorage()
 
@@ -43,8 +43,10 @@
 
 <template>
   <div class="height-wrapper padding-wrapper">
-    <!-- <div v-if="isLoading"></div> -->
-    <div class="mx-auto mb-6 max-w-6xl px-4">
+    <div v-if="isLoading">
+      <p class="text-center">Loading...</p>
+    </div>
+    <div v-else class="mx-auto mb-6 max-w-6xl px-4">
       <div class="text-center" v-if="!data.length">
         <h2 class="mb-4 text-xl">You currently do not have any appointment(s)</h2>
         <router-link class="btn btn-info" :to="{ name: 'CreateAppointment' }"
