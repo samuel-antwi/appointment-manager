@@ -63,8 +63,9 @@ export const useAppointments = defineStore({
             .from("appointments")
             .delete()
             .eq("id", currentId)
-          if (error) throw error
+          this.statusMsg = "Appointmet deleted!"
           router.push({ name: "All" })
+          if (error) throw error
         }
       } catch (error) {
         this.errorMsg = error.message
@@ -74,7 +75,7 @@ export const useAppointments = defineStore({
       }
     },
     // Update appointment
-    async updateAppointment(currentId) {
+    async updateAppointment(currentId, toast) {
       try {
         const { error } = await supabase
           .from("appointments")
@@ -90,10 +91,7 @@ export const useAppointments = defineStore({
             completed: false,
           })
           .eq("id", currentId)
-        this.statusMsg = "Appointment updated successfully!"
-        setTimeout(() => {
-          this.statusMsg = null
-        }, 5000)
+        toast()
         if (error) throw error
       } catch (error) {
         console.log(error.message)

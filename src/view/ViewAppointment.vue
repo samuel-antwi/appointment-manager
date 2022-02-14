@@ -3,6 +3,8 @@
   import moment from "moment"
   import { storeToRefs } from "pinia"
   import { useAppointments } from "../store/Appointments"
+  import { createToast } from "mosha-vue-toastify"
+  import "mosha-vue-toastify/dist/style.css"
 
   const router = useRouter()
   // Get route param
@@ -16,19 +18,23 @@
     appointment: data,
   } = storeToRefs(useAppointments())
 
+  // A toast function to display message when appointment is updated
+  const toast = () => {
+    createToast("Appointmet deleted!", {
+      type: "info",
+      toastBackgroundColor: "#111827",
+      hideProgressBar: true,
+    })
+  }
+
   const appointment = useAppointments()
 
   // Get appointment by ID
   appointment.getAppointmentById(currentId)
 
   // Delete appointment
-  const deleteAppointment = () => {
-    appointment.deleteAppointment(currentId, router)
-  }
-
-  // Update appointment
-  const updateAppointment = () => {
-    appointment.updateAppointment(updateAppointment)
+  const deleteAppointment = async () => {
+    await appointment.deleteAppointment(currentId, router)
   }
 </script>
 
@@ -42,9 +48,8 @@
         <h1 class="text-secondary py-3 text-center text-2xl font-semibold capitalize">
           {{ data.appointmentFor }}
         </h1>
-        <div v-if="statusMsg || errorMsg" class="mx-auto mb-5 max-w-2xl rounded-md p-4">
-          <p class="text-red-500">{{ errorMsg }}</p>
-          <p class="text-secondary">{{ statusMsg }}</p>
+        <div v-if="statusMsg" class="mx-auto mb-5 max-w-2xl rounded-md p-4 text-gray-50">
+          <p>{{ toast() }}</p>
         </div>
         <div
           class="card-wrapper relative flex flex-col items-center justify-center rounded-md bg-[#ffffff] p-4 text-center shadow-lg"

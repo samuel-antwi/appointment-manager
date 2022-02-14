@@ -23,7 +23,6 @@
   const localStorage = () => {
     const store = useStorage("mystorage", filteredData)
     const filterStore = useStorage("filter", sort)
-    // const localStorageData = useStorage("appointments", data)
   }
   localStorage()
 

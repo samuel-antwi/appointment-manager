@@ -1,22 +1,17 @@
 <script setup>
-  import { useRoute } from "vue-router"
+  import { useRoute, useRouter } from "vue-router"
   import { useAppointments } from "../store/Appointments"
   import { storeToRefs } from "pinia"
+  import { createToast } from "mosha-vue-toastify"
+  import "mosha-vue-toastify/dist/style.css"
 
   // Get Current ID
   const route = useRoute()
+  const router = useRouter()
   const currentId = route.params.appointmentId
 
   // Get appointments store instance from Pinia store
   const appointmentStore = useAppointments()
-
-  // Get appointment by id
-  appointmentStore.getAppointmentById(currentId)
-
-  // Update appointment
-  const updateAppointment = () => {
-    appointmentStore.updateAppointment(currentId)
-  }
 
   const {
     isLoading,
@@ -24,6 +19,24 @@
     statusMsg,
     appointment: data,
   } = storeToRefs(appointmentStore)
+
+  // A toast function to display message when appointment is updated
+  const toast = () => {
+    createToast("Appointment updated successfully.", {
+      type: "info",
+      toastBackgroundColor: "#111827",
+      hideProgressBar: true,
+    })
+  }
+
+  // Get appointment by id
+  appointmentStore.getAppointmentById(currentId)
+
+  // Update appointment
+  const updateAppointment = () => {
+    appointmentStore.updateAppointment(currentId, toast)
+    router.go(-1)
+  }
 </script>
 
 <template>
@@ -41,8 +54,8 @@
           v-if="statusMsg"
           class="mb-10 rounded-md bg-gray-800 p-4 text-center text-lg tracking-wider text-gray-50"
         >
-          <p>
-            {{ statusMsg }}
+          <p class="tracking-wider">
+            {{ toast }}
           </p>
         </div>
         <h1
@@ -140,7 +153,6 @@
             <input
               id="postcode"
               v-model="data.postCode"
-              required
               class="p-2 py-3.5 focus:outline-none"
               type="text"
               placeholder="Optional"

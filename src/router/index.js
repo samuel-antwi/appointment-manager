@@ -108,6 +108,7 @@ const router = createRouter({
 // Route Guard
 
 router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0)
   const user = supabase.auth.user()
   if (to.matched.some((res) => res.meta.auth)) {
     if (user) {
