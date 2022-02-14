@@ -81,7 +81,7 @@ export const useAppointments = defineStore({
           .from("appointments")
           .update({
             appointmentName: this.appointment.appointmentName,
-            appointmentFor: this.appointment.appointmentFor.toLowerCase(),
+            appointmentFor: this.appointment.appointmentFor,
             appointmentType: this.appointment.appointmentType,
             postCode: this.appointment.postCode,
             appointmentLocationDetails: this.appointment.appointmentLocationDetails,
