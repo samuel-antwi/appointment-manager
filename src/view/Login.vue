@@ -57,16 +57,16 @@
 
 <template>
   <div class="height-wrapper padding-wrapper">
-    <div class="max-w-2xl px-4 mx-auto">
+    <div class="mx-auto max-w-2xl px-4">
       <!-- Error handling -->
-      <div v-if="errorMsg" class="relative p-4 mb-10 rounded-md shadow-lg bg-light-grey">
+      <div v-if="errorMsg" class="bg-light-grey relative mb-10 rounded-md p-4 shadow-lg">
         <p class="text-red-500">{{ errorMsg }}</p>
-        <button class="absolute top-0 text-lg right-2" @click="errorMsg = null">
+        <button class="absolute top-0 right-2 text-lg" @click="errorMsg = null">
           &times;
         </button>
       </div>
-      <div class="p-8 rounded-md shadow-md bg-[#ffffff]">
-        <h1 class="mb-4 text-xl font-semibold text-info">Login</h1>
+      <div class="rounded-md bg-[#ffffff] p-8 shadow-md">
+        <h1 class="text-info mb-4 text-xl font-semibold">Login</h1>
         <form class="flex flex-col gap-y-6" @submit.prevent="handleLogin">
           <div class="flex flex-col">
             <label class="mb-1" for="email">Email*</label>
@@ -83,7 +83,7 @@
               <input
                 id="password"
                 v-model="password"
-                class="px-2.5 py-3.5 w-full focus:outline-none"
+                class="w-full px-2.5 py-3.5 focus:outline-none"
                 :type="passwordType"
               />
               <button
@@ -98,7 +98,7 @@
             </div>
           </div>
           <button
-            class="px-10 py-3.5 text-gray-100 font-medium uppercase tracking-wider sm:self-start bg-info"
+            class="bg-info px-10 py-3.5 font-medium uppercase tracking-wider text-gray-100 sm:self-start"
             type="submit"
           >
             Login
