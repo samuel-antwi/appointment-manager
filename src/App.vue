@@ -38,6 +38,11 @@
 </template>
 
 <style>
+  html,
+  body {
+    height: 100% !important;
+  }
+
   body {
     background: #eeeeee;
     overflow-x: hidden;

@@ -6,25 +6,30 @@
   @font-face {
     font-family: Futura;
     font-weight: 400;
-    src: url(/fonts/FuturaStd-Book.otf) format('woff');
+    src: url(/fonts/FuturaStd-Book.otf) format("woff");
     font-display: swap;
   }
   @font-face {
     font-family: Futura;
     font-weight: 500;
-    src: url(/fonts/FuturaStd-Medium.otf) format('woff');
+    src: url(/fonts/FuturaStd-Medium.otf) format("woff");
     font-display: swap;
   }
   @font-face {
     font-family: Futura;
     font-weight: 700;
-    src: url(/fonts/FuturaStd-Bold.otf) format('woff');
+    src: url(/fonts/FuturaStd-Bold.otf) format("woff");
     font-display: swap;
   }
   @font-face {
     font-family: Futura;
     font-weight: 800;
-    src: url(/fonts/FuturaStd-ExtraBold.otf) format('woff');
+    src: url(/fonts/FuturaStd-ExtraBold.otf) format("woff");
     font-display: swap;
   }
+}
+
+html,
+body {
+  height: 100% !important;
 }

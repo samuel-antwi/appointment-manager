@@ -7,6 +7,7 @@
   const email = ref("")
   let errorMsg = ref(null)
   let statusMsg = ref(null)
+  let isLoading = ref(false)
   const router = useRouter()
 
   const userStore = useUser()
@@ -14,6 +15,7 @@
   const user = computed(() => userStore.user)
 
   const handleLogin = async () => {
+    isLoading.value = true
     try {
       const { error } = await supabase.auth.signIn({
         email: email.value,
@@ -23,11 +25,13 @@
       setTimeout(() => {
         statusMsg.value = null
       }, 5000)
+      isLoading.value = false
     } catch (error) {
       errorMsg.value = error.message
       setTimeout(() => {
         errorMsg.value = null
       }, 5000)
+      isLoading.value = false
     }
   }
 
@@ -41,6 +45,9 @@
 
 <template>
   <div class="height-wrapper padding-wrapper">
+    <div v-if="isLoading">
+      <p class="text-center">Loading...</p>
+    </div>
     <div class="mx-auto max-w-2xl px-4">
       <!-- Error handling -->
       <div v-if="errorMsg" class="bg-light-grey relative mb-10 rounded-md p-4 shadow-lg">
@@ -55,28 +62,45 @@
           &times;
         </button>
       </div>
-      <div class="rounded-md bg-[#ffffff] p-8 shadow-md">
-        <h1 class="text-info mb-4 text-xl font-semibold">Login</h1>
-        <form class="flex flex-col gap-y-6" @submit.prevent="handleLogin">
-          <div class="flex flex-col">
-            <label class="mb-1" for="email">Email*</label>
-            <input
-              id="email"
-              v-model="email"
-              class="px-2.5 py-3.5 focus:outline-none"
-              type="email"
-            />
-          </div>
-          <button
-            class="w-full bg-gray-900 px-10 py-3.5 font-semibold uppercase tracking-wider text-gray-100 hover:bg-gray-800"
-            type="submit"
-          >
-            Send magic link
-          </button>
-        </form>
+      <div class="form-wrapper">
+        <div class="w-full rounded-md bg-[#ffffff] p-8 shadow-md">
+          <h1 class="text-info mb-4 text-xl font-semibold">Login</h1>
+          <form class="flex flex-col gap-y-6" @submit.prevent="handleLogin">
+            <div class="flex flex-col">
+              <label class="mb-1" for="email">Email*</label>
+              <input
+                v-bind:class="{ errorBorder: errorMsg }"
+                id="email"
+                v-model="email"
+                class="px-2.5 py-3.5 focus:outline-none"
+                type="email"
+              />
+            </div>
+            <button
+              :disabled="isLoading"
+              class="w-full bg-gray-900 px-10 py-3.5 font-semibold uppercase tracking-wider text-gray-100 hover:bg-gray-800"
+              type="submit"
+            >
+              Send magic link
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<style></style>
+<style>
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 60vh;
+  }
+
+  .errorBorder {
+    border-color: red !important;
+  }
+</style>
