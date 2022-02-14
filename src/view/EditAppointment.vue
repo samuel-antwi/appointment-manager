@@ -77,17 +77,14 @@
             </div>
             <div class="flex w-full flex-col">
               <label class="mb-1" for="for">Appointent for:</label>
-              <select
+              <input
                 id="for"
                 v-model="data.appointmentFor"
                 required
                 class="w-full p-2.5 py-3.5 focus:outline-none"
-              >
-                <option selected="selected" value="select">Select name</option>
-                <option value="kaylee">Kaylee</option>
-                <option value="gianna">Gianna</option>
-                <option value="kaylee and gianna">Kaylee and Gianna</option>
-              </select>
+                type="text"
+                placeholder="Eg. your name"
+              />
             </div>
           </div>
           <div class="flex flex-col gap-8 md:flex-row">

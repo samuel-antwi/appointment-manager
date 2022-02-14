@@ -81,7 +81,7 @@
               v-if="data.appointmentFor === 'kaylee'"
               class="mx-auto h-40 w-40 rounded-full object-cover"
               src="../assets/images/kaylee.jpeg"
-              alt="Baby"
+              alt="User Avatar"
               loading="lazy"
             />
             <img
@@ -94,10 +94,11 @@
             <img
               v-else
               class="mx-auto h-40 w-40 rounded-full object-cover"
-              src="../assets/images/kaylee-gianna.jpeg"
-              alt="Baby"
+              src="../assets/images/appointment-default.jpeg"
+              alt="User Avatar"
+              loading="lazy"
             />
-            <p class="bg-secondary mx-auto w-28 rounded-md p-2 capitalize text-gray-100">
+            <p class="bg-secondary mx-auto w-48 rounded-md p-2 capitalize text-gray-100">
               {{ data.appointmentName }}
             </p>
             <div class="flex flex-col gap-y-4 text-left text-gray-600">

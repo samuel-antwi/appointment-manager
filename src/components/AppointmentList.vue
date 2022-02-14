@@ -12,7 +12,7 @@
 <template>
   <div
     v-if="data.length > 0"
-    class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3"
+    class="height-wrapper grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3"
   >
     <router-link
       v-for="item in filteredData.length > 0 ? filteredData : data"

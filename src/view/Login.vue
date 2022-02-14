@@ -45,25 +45,28 @@
 
 <template>
   <div class="height-wrapper padding-wrapper">
-    <div v-if="isLoading">
-      <p class="text-center">Loading...</p>
-    </div>
     <div class="mx-auto max-w-2xl px-4">
       <!-- Error handling -->
-      <div v-if="errorMsg" class="bg-light-grey relative mb-10 rounded-md p-4 shadow-lg">
-        <p class="text-red-500" v-if="errorMsg">{{ errorMsg }}</p>
-        <button class="absolute top-0 right-2 text-lg" @click="errorMsg = null">
-          &times;
-        </button>
-      </div>
-      <div v-if="statusMsg" class="bg-light-grey relative mb-10 rounded-md p-4 shadow-lg">
-        <p>{{ statusMsg }}</p>
-        <button class="absolute top-0 right-2 text-lg" @click="errorMsg = null">
-          &times;
-        </button>
-      </div>
       <div class="form-wrapper">
         <div class="w-full rounded-md bg-[#ffffff] p-8 shadow-md">
+          <div
+            v-if="errorMsg"
+            class="bg-light-grey relative mb-10 rounded-md p-4 shadow-lg"
+          >
+            <p class="text-red-500" v-if="errorMsg">{{ errorMsg }}</p>
+            <button class="absolute top-0 right-2 text-lg" @click="errorMsg = null">
+              &times;
+            </button>
+          </div>
+          <div
+            v-if="statusMsg"
+            class="bg-light-grey relative mb-10 rounded-md p-4 shadow-lg"
+          >
+            <p>{{ statusMsg }}</p>
+            <button class="absolute top-0 right-2 text-lg" @click="errorMsg = null">
+              &times;
+            </button>
+          </div>
           <h1 class="text-info mb-4 text-xl font-semibold">Login</h1>
           <form class="flex flex-col gap-y-6" @submit.prevent="handleLogin">
             <div class="flex flex-col">
@@ -81,7 +84,8 @@
               class="w-full bg-gray-900 px-10 py-3.5 font-semibold uppercase tracking-wider text-gray-100 hover:bg-gray-800"
               type="submit"
             >
-              Send magic link
+              <span v-if="isLoading">Loading...</span>
+              <span v-else>Send me a magic link</span>
             </button>
           </form>
         </div>

@@ -114,7 +114,7 @@
       <form class="flex max-w-2xl flex-col gap-y-8" @submit.prevent="createAppointment">
         <div class="flex flex-col gap-8 md:flex-row">
           <div class="flex w-full flex-col">
-            <label class="mb-1" for="appointment-name">Appointment name:</label>
+            <label class="mb-1" for="appointment-name">Appointment name:*</label>
             <input
               id="appointment-name"
               v-model="appointmentName"
@@ -124,23 +124,20 @@
             />
           </div>
           <div class="flex w-full flex-col">
-            <label class="mb-1" for="for">Appointent for:</label>
-            <select
+            <label class="mb-1" for="for">Appointent for:*</label>
+            <input
               id="for"
               v-model="appointmentFor"
               required
               class="w-full p-2.5 py-3.5 focus:outline-none"
-            >
-              <option selected="selected" value="select">Select name</option>
-              <option value="kaylee">Kaylee</option>
-              <option value="gianna">Gianna</option>
-              <option value="kaylee and gianna">Kaylee and Gianna</option>
-            </select>
+              type="text"
+              placeholder="Eg. your name"
+            />
           </div>
         </div>
         <div class="flex flex-col gap-8 md:flex-row">
           <div class="flex w-full flex-col">
-            <label class="mb-1" for="type">Type:</label>
+            <label class="mb-1" for="type">Type:*</label>
             <select
               id="type"
               v-model="appointmentType"
@@ -154,7 +151,7 @@
             </select>
           </div>
           <div class="flex w-full flex-col">
-            <label class="mb-1" for="date">Date:</label>
+            <label class="mb-1" for="date">Date:*</label>
             <input
               id="date"
               v-model="date"
@@ -167,7 +164,7 @@
 
         <div class="flex flex-col gap-8 md:flex-row">
           <div class="flex w-full flex-col">
-            <label class="mb-1" for="time">Time:</label>
+            <label class="mb-1" for="time">Time:*</label>
             <input
               id="time"
               v-model="time"
@@ -177,7 +174,7 @@
             />
           </div>
           <div class="flex w-full flex-col">
-            <label class="mb-1" for="location">Location:</label>
+            <label class="mb-1" for="location">Location:*</label>
             <input
               id="location"
               v-model="location"
@@ -206,6 +203,9 @@
             type="text"
             placeholder="Optional"
           />
+          <small class="pt-2 tracking-wider text-gray-600"
+            >* indicates required fields!</small
+          >
         </div>
 
         <button
