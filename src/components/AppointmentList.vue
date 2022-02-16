@@ -1,21 +1,19 @@
-<script>
+<script setup>
   import moment from "moment"
-  export default {
-    props: ["data", "filteredData"],
 
-    setup() {
-      return { moment }
-    },
-  }
+  const props = defineProps({
+    data: Array,
+    filteredData: Array,
+  })
 </script>
 
 <template>
   <div
-    v-if="data.length > 0"
+    v-if="props.data.length > 0"
     class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3"
   >
     <router-link
-      v-for="item in filteredData.length > 0 ? filteredData : data"
+      v-for="item in props.filteredData.length > 0 ? props.filteredData : props.data"
       :key="item.id"
       class="flex flex-col items-center gap-y-5 rounded-xl bg-[#ffffff] p-5"
       :to="{ name: 'ViewAppointment', params: { appointmentId: item.id } }"

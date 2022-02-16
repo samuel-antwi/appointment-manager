@@ -4,7 +4,8 @@
   import { useRouter } from "vue-router"
   import { useUser } from "../store/useUser"
 
-  const email = ref("")
+  let email = ref("")
+  let password = ref("")
   let errorMsg = ref(null)
   let statusMsg = ref(null)
   let isLoading = ref(false)
@@ -19,12 +20,10 @@
     try {
       const { error } = await supabase.auth.signIn({
         email: email.value,
+        password: password.value,
       })
       if (error) throw error
-      statusMsg.value = `A login link has been sent to ${email?.value}`
-      setTimeout(() => {
-        statusMsg.value = null
-      }, 5000)
+      router.push({ name: "All" })
       isLoading.value = false
     } catch (error) {
       errorMsg.value = error.message
@@ -79,14 +78,35 @@
                 type="email"
               />
             </div>
+            <div class="flex flex-col">
+              <label class="mb-1" for="email">Password*</label>
+              <input
+                v-bind:class="{ errorBorder: errorMsg }"
+                id="password"
+                v-model="password"
+                class="px-2.5 py-3.5 focus:outline-none"
+                type="password"
+              />
+            </div>
             <button
               :disabled="isLoading"
               class="w-full bg-gray-900 px-10 py-3.5 font-semibold uppercase tracking-wider text-gray-100 hover:bg-gray-800"
               type="submit"
             >
               <span v-if="isLoading">Loading...</span>
-              <span v-else>Send me a magic link</span>
+              <span v-else>Login</span>
             </button>
+            <div class="flex flex-col justify-between space-y-4 md:flex-row md:space-y-0">
+              <router-link class="text-info" :to="{ name: 'ForgottenPassword' }">
+                Forgotten password?
+              </router-link>
+              <p class="text-right">
+                Don't have an account yet?
+                <router-link class="text-info" :to="{ name: 'Signup' }"
+                  >Sign up</router-link
+                >
+              </p>
+            </div>
           </form>
         </div>
       </div>

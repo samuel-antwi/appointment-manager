@@ -5,6 +5,7 @@
   import { useAppointments } from "../store/Appointments"
   import { useUser } from "../store/useUser"
   import { storeToRefs } from "pinia"
+  import FilteredAppointments from "../components/FilteredAppointments.vue"
 
   const appointmentStore = useAppointments()
 
@@ -52,42 +53,12 @@
           >Create appointment</router-link
         >
       </div>
-      <div class="mb-5 flex flex-col md:max-w-xs">
-        <div v-if="data.length > 1">
-          <div class="flex items-center justify-between">
-            <label class="label-text mb-1">Filter by:</label>
-            <div>
-              <button
-                @click="resetFilter"
-                v-if="filteredData.length > 0"
-                type="button"
-                class="text-info ml-3"
-              >
-                Reset
-              </button>
-              <button
-                disabled
-                @click="resetFilter"
-                v-else
-                type="button"
-                class="cursor-not-allowed text-blue-300"
-              >
-                Reset
-              </button>
-            </div>
-          </div>
-          <select
-            @change="filterAppointments(sort)"
-            v-model="sort"
-            class="mt-1 w-full rounded-md text-gray-500 focus:outline-none"
-          >
-            <option selected="selected" value="relevance">Relevance</option>
-            <option value="kaylee">Kaylee</option>
-            <option value="gianna">Gianna</option>
-            <option value="kaylee and gianna">Kaylee and Gianna</option>
-          </select>
-        </div>
-      </div>
+      <!-- <FilteredAppointments
+        :filterAppointments="filterAppointments"
+        :sort="sort"
+        :data="data"
+        :filteredData="filteredData"
+      /> -->
       <AppointmentList :data="data" :filteredData="filteredData" />
     </div>
   </div>
