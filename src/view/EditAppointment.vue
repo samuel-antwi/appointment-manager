@@ -59,9 +59,9 @@
           </p>
         </div>
         <h1
-          class="mb-4 py-5 text-2xl font-semibold uppercase tracking-wider text-gray-700 md:text-3xl md:font-bold"
+          class="mb-4 py-5 text-2xl font-semibold uppercase tracking-wider text-gray-700 md:font-bold"
         >
-          Appointment Details
+          Edit Appointment
         </h1>
         <form class="flex max-w-2xl flex-col gap-y-8" @submit.prevent="updateAppointment">
           <div class="flex flex-col gap-8 md:flex-row">

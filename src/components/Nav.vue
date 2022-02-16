@@ -10,7 +10,6 @@
 
   const user = computed(() => userStore.user)
   let showSidenav = ref(false)
-  const email = computed(() => userStore.getUserEmail)
   const router = useRouter()
 
   const handleSignOut = async () => {
@@ -26,20 +25,26 @@
 <template>
   <div>
     <nav class="px-4">
-      <div class="flex items-center justify-between max-w-5xl py-5 mx-auto">
+      <div class="mx-auto flex max-w-5xl items-center justify-between py-5">
         <router-link class="btn btn-secondary md:btn-lg" to="/"> KayGia </router-link>
-        <div class="items-center hidden sm:flex gap-x-4">
-          <p v-if="user">Hi, {{ email }}</p>
+        <div class="hidden items-center gap-x-4 sm:flex">
           <router-link
             v-if="user"
-            class="btn btn-primary"
+            class="font-semibold tracking-wider text-gray-700"
             :to="{ name: 'CreateAppointment' }"
             >Create</router-link
           >
-          <button v-if="user" class="btn btn-primary" @click="handleSignOut">
+          <button
+            v-if="user"
+            class="font-semibold tracking-wider text-gray-700"
+            @click="handleSignOut"
+          >
             Logout
           </button>
-          <router-link v-else class="btn btn-primary" :to="{ name: 'Login' }"
+          <router-link
+            v-else
+            class="font-semibold tracking-wider text-gray-700"
+            :to="{ name: 'Login' }"
             >Login</router-link
           >
         </div>
