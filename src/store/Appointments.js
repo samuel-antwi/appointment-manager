@@ -5,6 +5,7 @@ export const useAppointments = defineStore({
   id: "appointmentStore",
   state: () => ({
     data: [],
+    subscriptionAppointments: null,
     appointment: null,
     pastAppointments: [],
     nextAppointment: null,
@@ -12,6 +13,7 @@ export const useAppointments = defineStore({
     isLoading: false,
     errorMsg: null,
     statusMsg: null,
+    occupation: "Developer",
   }),
   getters: {
     getFormattedDate() {

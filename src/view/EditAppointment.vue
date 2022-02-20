@@ -20,6 +20,8 @@
     appointment: data,
   } = storeToRefs(appointmentStore)
 
+  console.log(data)
+
   // A toast function to display message when appointment is updated
   const toast = () => {
     createToast("Appointment updated successfully.", {
@@ -33,9 +35,9 @@
   appointmentStore.getAppointmentById(currentId)
 
   // Update appointment
-  const updateAppointment = () => {
-    appointmentStore.updateAppointment(currentId, toast)
-    router.go(-1)
+  const updateAppointment = async () => {
+    await appointmentStore.updateAppointment(currentId, toast)
+    router.push({ name: "ViewAppointment" })
   }
 </script>
 
@@ -136,6 +138,7 @@
               />
             </div>
           </div>
+
           <div class="flex flex-col">
             <label class="mb-1" for="locationdetails">Location details:</label>
             <textarea

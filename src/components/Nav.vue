@@ -39,7 +39,7 @@
             class="font-semibold tracking-wider text-gray-700"
             @click="handleSignOut"
           >
-            Logout
+            Sign Out
           </button>
           <router-link
             v-else

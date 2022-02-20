@@ -8,17 +8,17 @@
   export default {
     setup() {
       const router = useRouter()
-      const appointmentName = ref("")
-      const appointmentType = ref("")
-      const date = ref("")
-      const appointmentLocationDetails = ref("")
-      const time = ref("")
-      const location = ref("")
-      const postCode = ref("")
+      const appointmentName = ref(null)
+      const appointmentType = ref(null)
+      const date = ref(null)
+      const appointmentLocationDetails = ref(null)
+      const time = ref(null)
+      const location = ref(null)
+      const postCode = ref(null)
       const completed = ref(false)
       const errorMsg = ref(null)
       const statusMsg = ref(null)
-      const appointmentFor = ref("")
+      const appointmentFor = ref(null)
       const appointmentTypeOptions = ref([
         { name: "Select", value: "select" },
         { name: "Hospital", value: "hospital" },
@@ -184,6 +184,7 @@
             />
           </div>
         </div>
+
         <div class="flex flex-col">
           <label class="mb-1" for="locationdetails">Location details:</label>
           <textarea

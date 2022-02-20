@@ -106,6 +106,7 @@
                   >Sign up</router-link
                 >
               </p>
+              <p></p>
             </div>
           </form>
         </div>

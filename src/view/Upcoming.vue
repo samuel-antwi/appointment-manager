@@ -2,10 +2,20 @@
   import moment from "moment"
   import { useAppointments } from "../store/Appointments"
   import { storeToRefs } from "pinia"
+  import { supabase } from "../supabase"
 
   const appointmentStore = useAppointments()
   appointmentStore.getNextappointment()
   const { isLoading, nextAppointment: data } = storeToRefs(appointmentStore)
+
+  const getData = async () => {
+    let { data: appointments, error } = await supabase
+      .from("appointments")
+      .select("appointmentType", "hospital")
+    return appointments
+  }
+
+  console.log(getData())
 </script>
 
 <template>
