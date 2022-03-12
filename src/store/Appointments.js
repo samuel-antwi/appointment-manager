@@ -1,4 +1,4 @@
-import { defineStore } from "pinia"
+import { defineStore, acceptHMRUpdate } from "pinia"
 import { supabase } from "../supabase"
 
 export const useAppointments = defineStore({
@@ -13,12 +13,17 @@ export const useAppointments = defineStore({
     isLoading: false,
     errorMsg: null,
     statusMsg: null,
-    occupation: "Developer",
+    occupation: "Teacher",
   }),
   getters: {
     getFormattedDate() {
       let dt = new Date()
-      const newDate = dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate()
+      const newDate =
+        dt.getFullYear() +
+        "-" +
+        (dt.getMonth() + 1) +
+        "-" +
+        dt.getDate()
       return newDate
     },
   },
@@ -63,7 +68,9 @@ export const useAppointments = defineStore({
     // Delete appointment.
     async deleteAppointment(currentId, router) {
       try {
-        if (confirm("Are you sure you want to delete this appointment?")) {
+        if (
+          confirm("Are you sure you want to delete this appointment?")
+        ) {
           const { error } = await supabase
             .from("appointments")
             .delete()
@@ -89,7 +96,8 @@ export const useAppointments = defineStore({
             appointmentFor: this.appointment.appointmentFor,
             appointmentType: this.appointment.appointmentType,
             postCode: this.appointment.postCode,
-            appointmentLocationDetails: this.appointment.appointmentLocationDetails,
+            appointmentLocationDetails:
+              this.appointment.appointmentLocationDetails,
             time: this.appointment.time,
             date: this.appointment.date,
             location: this.appointment.location,
@@ -144,3 +152,9 @@ export const useAppointments = defineStore({
     },
   },
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(
+    acceptHMRUpdate(useAppointments, import.meta.hot)
+  )
+}
