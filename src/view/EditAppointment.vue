@@ -29,9 +29,6 @@
     })
   }
 
-  // Get appointment by id
-  appointmentStore.getAppointmentById(currentId)
-
   // Update appointment
   const updateAppointment = async () => {
     await appointmentStore.updateAppointment(currentId, toast)
