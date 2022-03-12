@@ -1,90 +1,61 @@
-<script>
+<script setup>
   import { ref } from "vue"
   import { supabase } from "../supabase"
   import { useRouter } from "vue-router"
   import { useAppointments } from "../store/Appointments"
   import moment from "moment"
   import { useUser } from "../store/useUser"
-  export default {
-    setup() {
-      const router = useRouter()
-      const appointmentName = ref(null)
-      const appointmentType = ref(null)
-      const date = ref(null)
-      const appointmentLocationDetails = ref(null)
-      const time = ref(null)
-      const location = ref(null)
-      const postCode = ref(null)
-      const completed = ref(false)
-      const errorMsg = ref(null)
-      const statusMsg = ref(null)
-      const appointmentFor = ref(null)
-      const appointmentTypeOptions = ref([
-        { name: "Select", value: "select" },
-        { name: "Hospital", value: "hospital" },
-        { name: "GP Surgery", value: "gp surgery" },
-        { name: "School", value: "school" },
-        { name: "Other", value: "other" },
+
+  let router = useRouter()
+  let appointmentName = ref(null)
+  let appointmentType = ref(null)
+  let date = ref(null)
+  let appointmentLocationDetails = ref(null)
+  let time = ref(null)
+  let location = ref(null)
+  let postCode = ref(null)
+  let completed = ref(false)
+  let errorMsg = ref(null)
+  let statusMsg = ref(null)
+  let appointmentFor = ref(null)
+  let appointmentTypeOptions = ref([
+    { name: "Select", value: "select" },
+    { name: "Hospital", value: "hospital" },
+    { name: "GP Surgery", value: "gp surgery" },
+    { name: "School", value: "school" },
+    { name: "Other", value: "other" },
+  ])
+
+  const appointments = useAppointments()
+  const userStore = useUser()
+  const userId = userStore.getUserId
+
+  const createAppointment = async () => {
+    try {
+      const { error } = await supabase.from("appointments").insert([
+        {
+          appointmentName: appointmentName.value,
+          appointmentFor: appointmentFor.value.toLowerCase(),
+          appointmentType: appointmentType.value,
+          time: time.value,
+          date: date.value,
+          location: location.value,
+          postCode: postCode.value,
+          appointmentLocationDetails:
+            appointmentLocationDetails.value,
+          completed: false,
+          user_id: userId,
+        },
       ])
-
-      const appointments = useAppointments()
-      const userStore = useUser()
-      const userId = userStore.getUserId
-
-      const edit = appointments.edit
-
-      const formatTodayDate = () => {
-        return moment(new Date()).format("YYYY-MM-DD")
-      }
-
-      const createAppointment = async () => {
-        try {
-          const { error } = await supabase
-            .from("appointments")
-            .insert([
-              {
-                appointmentName: appointmentName.value,
-                appointmentFor: appointmentFor.value.toLowerCase(),
-                appointmentType: appointmentType.value,
-                time: time.value,
-                date: date.value,
-                location: location.value,
-                postCode: postCode.value,
-                appointmentLocationDetails:
-                  appointmentLocationDetails.value,
-                completed: false,
-                user_id: userId,
-              },
-            ])
-          if (error) throw error
-          router.push({ name: "All" })
-        } catch (error) {
-          console.log(error.message)
-          errorMsg.value = error.message
-          setTimeout(() => {
-            errorMsg.value = null
-          }, 5000)
-        }
-      }
-
-      return {
-        createAppointment,
-        appointmentName,
-        appointmentFor,
-        appointmentType,
-        date,
-        time,
-        completed,
-        errorMsg,
-        statusMsg,
-        location,
-        edit,
-        appointmentTypeOptions,
-        userId,
-        appointmentLocationDetails,
-        postCode,
-      }
-    },
+      if (error) throw error
+      router.push({ name: "All" })
+    } catch (error) {
+      console.log(error.message)
+      errorMsg.value = error.message
+      setTimeout(() => {
+        errorMsg.value = null
+      }, 5000)
+    }
   }
 </script>
 

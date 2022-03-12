@@ -155,7 +155,7 @@
               type="text"
             ></textarea>
           </div>
-          <div class="flex flex-col w-full md:w-1/2">
+          <div class="flex flex-col w-full">
             <label class="mb-1" for="postcode">Post Code:</label>
             <input
               id="postcode"
@@ -165,7 +165,6 @@
               placeholder="Optional"
             />
           </div>
-
           <button
             class="w-full py-4 font-semibold tracking-wider uppercase bg-gray-800 text-gray-50 hover:bg-gray-900 md:w-6/12"
             type="submit"
