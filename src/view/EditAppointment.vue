@@ -20,8 +20,6 @@
     appointment: data,
   } = storeToRefs(appointmentStore)
 
-  console.log(data)
-
   // A toast function to display message when appointment is updated
   const toast = () => {
     createToast("Appointment updated successfully.", {
@@ -47,28 +45,33 @@
 
     <div class="py-12" v-else>
       <div class="edit mx-auto max-w-3xl bg-[#ffffff] p-8 md:px-10">
-        <div v-if="errorMsg" class="mb-10 rounded-md p-4">
+        <div v-if="errorMsg" class="p-4 mb-10 rounded-md">
           <p class="text-red-500">
             {{ errorMsg }}
           </p>
         </div>
         <div
           v-if="statusMsg"
-          class="mb-10 rounded-md bg-gray-800 p-4 text-center text-lg tracking-wider text-gray-50"
+          class="p-4 mb-10 text-lg tracking-wider text-center bg-gray-800 rounded-md text-gray-50"
         >
           <p class="tracking-wider">
             {{ toast }}
           </p>
         </div>
         <h1
-          class="mb-4 py-5 text-2xl font-semibold uppercase tracking-wider text-gray-700 md:font-bold"
+          class="py-5 mb-4 text-2xl font-semibold tracking-wider text-gray-700 uppercase md:font-bold"
         >
           Edit Appointment
         </h1>
-        <form class="flex max-w-2xl flex-col gap-y-8" @submit.prevent="updateAppointment">
+        <form
+          class="flex flex-col max-w-2xl gap-y-8"
+          @submit.prevent="updateAppointment"
+        >
           <div class="flex flex-col gap-8 md:flex-row">
-            <div class="flex w-full flex-col">
-              <label class="mb-1" for="appointment-name">Appointment name:</label>
+            <div class="flex flex-col w-full">
+              <label class="mb-1" for="appointment-name"
+                >Appointment name:</label
+              >
               <input
                 id="appointment-name"
                 v-model="data.appointmentName"
@@ -77,7 +80,7 @@
                 type="text"
               />
             </div>
-            <div class="flex w-full flex-col">
+            <div class="flex flex-col w-full">
               <label class="mb-1" for="for">Appointent for:</label>
               <input
                 id="for"
@@ -90,7 +93,7 @@
             </div>
           </div>
           <div class="flex flex-col gap-8 md:flex-row">
-            <div class="flex w-full flex-col">
+            <div class="flex flex-col w-full">
               <label class="mb-1" for="type">Type:</label>
               <select
                 id="type"
@@ -98,13 +101,15 @@
                 required
                 class="p-2.5 py-3.5 focus:outline-none"
               >
-                <option selected="selected" value="select type">Select type</option>
+                <option selected="selected" value="select type">
+                  Select type
+                </option>
                 <option value="hospital">Hospital</option>
                 <option value="gp surgery">GP Surgery</option>
                 <option value="other">Other</option>
               </select>
             </div>
-            <div class="flex w-full flex-col">
+            <div class="flex flex-col w-full">
               <label class="mb-1" for="date">Date:</label>
               <input
                 id="date"
@@ -117,7 +122,7 @@
           </div>
 
           <div class="flex flex-col gap-8 md:flex-row">
-            <div class="flex w-full flex-col">
+            <div class="flex flex-col w-full">
               <label class="mb-1" for="time">Time:</label>
               <input
                 id="time"
@@ -127,7 +132,7 @@
                 type="time"
               />
             </div>
-            <div class="flex w-full flex-col">
+            <div class="flex flex-col w-full">
               <label class="mb-1" for="location">Location:</label>
               <input
                 id="location"
@@ -140,7 +145,9 @@
           </div>
 
           <div class="flex flex-col">
-            <label class="mb-1" for="locationdetails">Location details:</label>
+            <label class="mb-1" for="locationdetails"
+              >Location details:</label
+            >
             <textarea
               id="locationdetails"
               v-model="data.appointmentLocationDetails"
@@ -148,7 +155,7 @@
               type="text"
             ></textarea>
           </div>
-          <div class="flex w-full flex-col md:w-1/2">
+          <div class="flex flex-col w-full md:w-1/2">
             <label class="mb-1" for="postcode">Post Code:</label>
             <input
               id="postcode"
@@ -160,7 +167,7 @@
           </div>
 
           <button
-            class="w-full bg-gray-800 py-4 font-semibold uppercase tracking-wider text-gray-50 hover:bg-gray-900 md:w-6/12"
+            class="w-full py-4 font-semibold tracking-wider uppercase bg-gray-800 text-gray-50 hover:bg-gray-900 md:w-6/12"
             type="submit"
           >
             Save Changes

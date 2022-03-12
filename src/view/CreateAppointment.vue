@@ -39,20 +39,23 @@
 
       const createAppointment = async () => {
         try {
-          const { error } = await supabase.from("appointments").insert([
-            {
-              appointmentName: appointmentName.value,
-              appointmentFor: appointmentFor.value,
-              appointmentType: appointmentType.value,
-              time: time.value,
-              date: date.value,
-              location: location.value,
-              postCode: postCode.value,
-              appointmentLocationDetails: appointmentLocationDetails.value,
-              completed: false,
-              user_id: userId,
-            },
-          ])
+          const { error } = await supabase
+            .from("appointments")
+            .insert([
+              {
+                appointmentName: appointmentName.value,
+                appointmentFor: appointmentFor.value.toLowerCase(),
+                appointmentType: appointmentType.value,
+                time: time.value,
+                date: date.value,
+                location: location.value,
+                postCode: postCode.value,
+                appointmentLocationDetails:
+                  appointmentLocationDetails.value,
+                completed: false,
+                user_id: userId,
+              },
+            ])
           if (error) throw error
           router.push({ name: "All" })
         } catch (error) {
@@ -86,11 +89,11 @@
 </script>
 
 <template>
-  <div class="height-wrapper py-12">
-    <div class="mx-auto max-w-2xl px-8 text-center">
+  <div class="py-12 height-wrapper">
+    <div class="max-w-2xl px-8 mx-auto text-center">
       <div
         v-if="errorMsg"
-        class="mb-10 rounded-md bg-gray-800 p-4 text-center text-lg tracking-wider text-gray-50"
+        class="p-4 mb-10 text-lg tracking-wider text-center bg-gray-800 rounded-md text-gray-50"
       >
         <p>
           {{ errorMsg }}
@@ -98,7 +101,7 @@
       </div>
       <div
         v-if="statusMsg"
-        class="mb-10 rounded-md bg-gray-800 p-4 text-center text-lg tracking-wider text-gray-50"
+        class="p-4 mb-10 text-lg tracking-wider text-center bg-gray-800 rounded-md text-gray-50"
       >
         <p>
           {{ statusMsg }}
@@ -107,14 +110,19 @@
     </div>
     <div class="edit mx-auto max-w-3xl bg-[#ffffff] p-8 md:px-10">
       <h1
-        class="mb-4 py-5 text-2xl font-semibold uppercase text-gray-700 md:text-3xl md:font-bold"
+        class="py-5 mb-4 text-2xl font-semibold text-gray-700 uppercase md:text-3xl md:font-bold"
       >
         Add Appointment
       </h1>
-      <form class="flex max-w-2xl flex-col gap-y-8" @submit.prevent="createAppointment">
+      <form
+        class="flex flex-col max-w-2xl gap-y-8"
+        @submit.prevent="createAppointment"
+      >
         <div class="flex flex-col gap-8 md:flex-row">
-          <div class="flex w-full flex-col">
-            <label class="mb-1" for="appointment-name">Appointment name:*</label>
+          <div class="flex flex-col w-full">
+            <label class="mb-1" for="appointment-name"
+              >Appointment name:*</label
+            >
             <input
               id="appointment-name"
               v-model="appointmentName"
@@ -123,7 +131,7 @@
               type="text"
             />
           </div>
-          <div class="flex w-full flex-col">
+          <div class="flex flex-col w-full">
             <label class="mb-1" for="for">Appointent for:*</label>
             <input
               id="for"
@@ -136,7 +144,7 @@
           </div>
         </div>
         <div class="flex flex-col gap-8 md:flex-row">
-          <div class="flex w-full flex-col">
+          <div class="flex flex-col w-full">
             <label class="mb-1" for="type">Type:*</label>
             <select
               id="type"
@@ -144,13 +152,15 @@
               required
               class="p-2.5 py-3.5 focus:outline-none"
             >
-              <option selected="selected" value="select type">Select type</option>
+              <option selected="selected" value="select type">
+                Select type
+              </option>
               <option value="hospital">Hospital</option>
               <option value="gp surgery">GP Surgery</option>
               <option value="other">Other</option>
             </select>
           </div>
-          <div class="flex w-full flex-col">
+          <div class="flex flex-col w-full">
             <label class="mb-1" for="date">Date:*</label>
             <input
               id="date"
@@ -163,7 +173,7 @@
         </div>
 
         <div class="flex flex-col gap-8 md:flex-row">
-          <div class="flex w-full flex-col">
+          <div class="flex flex-col w-full">
             <label class="mb-1" for="time">Time:*</label>
             <input
               id="time"
@@ -173,7 +183,7 @@
               type="time"
             />
           </div>
-          <div class="flex w-full flex-col">
+          <div class="flex flex-col w-full">
             <label class="mb-1" for="location">Location:*</label>
             <input
               id="location"
@@ -186,7 +196,9 @@
         </div>
 
         <div class="flex flex-col">
-          <label class="mb-1" for="locationdetails">Location details:</label>
+          <label class="mb-1" for="locationdetails"
+            >Location details:</label
+          >
           <textarea
             id="locationdetails"
             v-model="appointmentLocationDetails"
@@ -210,7 +222,7 @@
         </div>
 
         <button
-          class="w-full bg-gray-800 py-4 font-semibold uppercase tracking-wider text-gray-50 hover:bg-gray-900 md:w-6/12"
+          class="w-full py-4 font-semibold tracking-wider uppercase bg-gray-800 text-gray-50 hover:bg-gray-900 md:w-6/12"
           type="submit"
         >
           Submit
