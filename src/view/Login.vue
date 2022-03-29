@@ -44,49 +44,61 @@
 
 <template>
   <div class="height-wrapper padding-wrapper">
-    <div class="mx-auto max-w-2xl px-4">
+    <div class="max-w-2xl px-4 mx-auto">
       <!-- Error handling -->
       <div class="form-wrapper">
         <div class="w-full rounded-md bg-[#ffffff] p-8 shadow-md">
           <div
             v-if="errorMsg"
-            class="bg-light-grey relative mb-10 rounded-md p-4 shadow-lg"
+            class="relative p-4 mb-10 rounded-md shadow-lg bg-light-grey"
           >
             <p class="text-red-500" v-if="errorMsg">{{ errorMsg }}</p>
-            <button class="absolute top-0 right-2 text-lg" @click="errorMsg = null">
+            <button
+              class="absolute top-0 text-lg right-2"
+              @click="errorMsg = null"
+            >
               &times;
             </button>
           </div>
           <div
             v-if="statusMsg"
-            class="bg-light-grey relative mb-10 rounded-md p-4 shadow-lg"
+            class="relative p-4 mb-10 rounded-md shadow-lg bg-light-grey"
           >
             <p>{{ statusMsg }}</p>
-            <button class="absolute top-0 right-2 text-lg" @click="errorMsg = null">
+            <button
+              class="absolute top-0 text-lg right-2"
+              @click="errorMsg = null"
+            >
               &times;
             </button>
           </div>
-          <h1 class="text-info mb-4 text-xl font-semibold">Login</h1>
-          <form class="flex flex-col gap-y-6" @submit.prevent="handleLogin">
+          <h1 class="mb-4 text-xl font-semibold text-info">Login</h1>
+          <form
+            class="flex flex-col gap-y-6"
+            @submit.prevent="handleLogin"
+          >
             <div class="flex flex-col">
-              <label class="mb-1" for="email">Email*</label>
-              <input
-                v-bind:class="{ errorBorder: errorMsg }"
-                id="email"
-                v-model="email"
-                class="px-2.5 py-3.5 focus:outline-none"
-                type="email"
-              />
+              <label>
+                <h1 class="mb-1">Email*</h1>
+                <input
+                  v-bind:class="{ errorBorder: errorMsg }"
+                  id="email"
+                  v-model="email"
+                  class="w-full px-2.5 py-3.5 focus:outline-none"
+                  type="email"
+                />
+              </label>
             </div>
             <div class="flex flex-col">
-              <label class="mb-1" for="email">Password*</label>
-              <input
-                v-bind:class="{ errorBorder: errorMsg }"
-                id="password"
-                v-model="password"
-                class="px-2.5 py-3.5 focus:outline-none"
-                type="password"
-              />
+              <label>
+                <h1 class="mb-1">Password*</h1>
+                <input
+                  v-bind:class="{ errorBorder: errorMsg }"
+                  v-model="password"
+                  class="w-full px-2.5 py-3.5 focus:outline-none"
+                  type="password"
+                />
+              </label>
             </div>
             <button
               :disabled="isLoading"
@@ -96,13 +108,20 @@
               <span v-if="isLoading">Loading...</span>
               <span v-else>Login</span>
             </button>
-            <div class="flex flex-col justify-between space-y-4 md:flex-row md:space-y-0">
-              <router-link class="text-info" :to="{ name: 'ForgottenPassword' }">
+            <div
+              class="flex flex-col justify-between space-y-4 md:flex-row md:space-y-0"
+            >
+              <router-link
+                class="text-info"
+                :to="{ name: 'ForgottenPassword' }"
+              >
                 Forgotten password?
               </router-link>
               <p class="text-right">
                 Don't have an account yet?
-                <router-link class="text-info" :to="{ name: 'Signup' }"
+                <router-link
+                  class="text-info"
+                  :to="{ name: 'Signup' }"
                   >Sign up</router-link
                 >
               </p>
